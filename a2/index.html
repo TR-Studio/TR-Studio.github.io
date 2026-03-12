@@ -111,14 +111,14 @@
 const CONFIG_ROUNDS = [
   {
     name: "รอบที่ 3 (50฿)",
-    title: "รอบที่ 3: ",
+    title: "รอบที่ 3: ค่าเข้า 50฿",
     date: "22 มีนาคม - 24 มีนาคม",
     quota: "20 คน (นับจากคนที่สัมภาษณ์)",
     playDate: "25 มีนาคม | 20.30 น.",
     skin: "ภายในวันที่ 25 (ถ้าไม่ทันรอรอบที่ 4)",
     cost: "50 บาท",
     note: "⚠️ จะมีการจัดสรรเข้ากองงาน (สำคัญมาก มาช้าหรือไม่มาอาจจะมีผลต่อโรลตัวละครของท่าน)",
-    targetDate: "2026-02-22T20:30:00"
+    targetDate: "2026-03-22T20:30:00"
   },
   {
     name: "รอบที่ 4 (50฿)",
@@ -129,7 +129,7 @@ const CONFIG_ROUNDS = [
     skin: "ภายในวันที่ 13 (ถ้าไม่ทันรอรอบที่ 5)",
     cost: "50 บาท",
     note: "⚠️ จะมีการจัดสรรเข้ากองงาน (สำคัญมาก มาช้าหรือไม่มาอาจจะมีผลต่อโรลตัวละครของท่าน)",
-    targetDate: "2026-03-10T20:30:00"
+    targetDate: "2026-04-10T20:30:00"
   }
 ];
 
@@ -188,12 +188,12 @@ function updateCountdown() {
   const now = new Date().getTime();
   let currentRound = CONFIG_ROUNDS[0];
   let target = new Date(currentRound.targetDate).getTime();
-  let label = "TIME TO INTERVIEW R1";
+  let label = "TIME TO INTERVIEW R3";
 
   if (now > target && CONFIG_ROUNDS[1]) {
     currentRound = CONFIG_ROUNDS[1];
     target = new Date(currentRound.targetDate).getTime();
-    label = "TIME TO INTERVIEW R2";
+    label = "TIME TO INTERVIEW R4";
   }
 
   const diff = target - now;
