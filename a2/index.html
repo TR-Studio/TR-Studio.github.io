@@ -1,1107 +1,1064 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="th">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Holly Grave | Recruitment Schedule</title>
-  <link href="https://fonts.googleapis.com/css2?family=Rye&family=Cinzel:wght@400;700;900&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --gold: #c9952a;
-      --gold-light: #e8c068;
-      --rust: #8b3a1a;
-      --rust-dark: #5a1e08;
-      --dirt: #3d2a1a;
-      --parchment: #d4b483;
-      --parchment-dark: #b8935a;
-      --cream: #f5e8c8;
-      --smoke: #c2b49a;
-      --blood: #7a1a1a;
-      --night: #0d0a06;
-      --wood: #2a1a0d;
-    }
-
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-
-    html, body {
-      width: 100%; height: 100%;
-      font-family: 'Crimson Text', Georgia, serif;
-      overflow: hidden;
-      background: var(--night);
-      color: var(--cream);
-      cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 20 20'%3E%3Ccircle cx='10' cy='10' r='3' fill='%23c9952a'/%3E%3Cline x1='10' y1='0' x2='10' y2='6' stroke='%23c9952a' stroke-width='1.5'/%3E%3Cline x1='10' y1='14' x2='10' y2='20' stroke='%23c9952a' stroke-width='1.5'/%3E%3Cline x1='0' y1='10' x2='6' y2='10' stroke='%23c9952a' stroke-width='1.5'/%3E%3Cline x1='14' y1='10' x2='20' y2='10' stroke='%23c9952a' stroke-width='1.5'/%3E%3C/svg%3E") 10 10, crosshair;
-    }
-
-    /* ===== LOADING SCREEN ===== */
-    #loadingScreen {
-      position: fixed; inset: 0; z-index: 99999;
-      background: var(--night);
-      display: flex; flex-direction: column; align-items: center; justify-content: center;
-      font-family: 'Rye', serif;
-    }
-
-    .ld-stars {
-      position: absolute; inset: 0; overflow: hidden;
-    }
-    .ld-stars::before, .ld-stars::after {
-      content: '';
-      position: absolute; inset: 0;
-      background-image:
-        radial-gradient(1px 1px at 20% 30%, rgba(255,220,120,0.8) 0%, transparent 100%),
-        radial-gradient(1px 1px at 80% 10%, rgba(255,220,120,0.6) 0%, transparent 100%),
-        radial-gradient(1.5px 1.5px at 50% 60%, rgba(255,220,120,0.9) 0%, transparent 100%),
-        radial-gradient(1px 1px at 10% 80%, rgba(255,220,120,0.5) 0%, transparent 100%),
-        radial-gradient(1px 1px at 70% 85%, rgba(255,220,120,0.7) 0%, transparent 100%),
-        radial-gradient(1px 1px at 35% 15%, rgba(255,220,120,0.6) 0%, transparent 100%),
-        radial-gradient(1px 1px at 90% 45%, rgba(255,220,120,0.5) 0%, transparent 100%),
-        radial-gradient(1.5px 1.5px at 60% 25%, rgba(255,220,120,1) 0%, transparent 100%),
-        radial-gradient(1px 1px at 15% 55%, rgba(255,220,120,0.7) 0%, transparent 100%),
-        radial-gradient(1px 1px at 85% 70%, rgba(255,220,120,0.6) 0%, transparent 100%);
-      background-size: 400px 400px;
-    }
-    .ld-stars::after {
-      background-size: 600px 600px;
-      animation: twinkle 4s ease-in-out infinite alternate;
-    }
-    @keyframes twinkle { from { opacity: 0.6; } to { opacity: 1; } }
-
-    .ld-moon {
-      position: absolute; top: 40px; right: 80px;
-      width: 60px; height: 60px;
-      background: radial-gradient(circle at 40% 40%, #ffe88a, #e8a020);
-      border-radius: 50%;
-      box-shadow: 0 0 30px 10px rgba(232, 160, 32, 0.3);
-    }
-
-    .ld-horizon {
-      position: absolute; bottom: 0; left: 0; right: 0; height: 120px;
-      background: linear-gradient(0deg, #1a0d06 0%, #2d1508 40%, transparent 100%);
-    }
-
-    /* Desert silhouette */
-    .ld-desert {
-      position: absolute; bottom: 0; left: 0; right: 0; height: 150px;
-      overflow: hidden;
-    }
-    .ld-desert svg { width: 100%; height: 100%; }
-
-    .ld-logo { position: relative; z-index: 5; margin-bottom: 20px; }
-    .ld-logo img {
-      width: 80px; height: 80px; border-radius: 50%;
-      border: 3px solid var(--gold);
-      box-shadow: 0 0 30px rgba(201,149,42,0.6), inset 0 0 20px rgba(0,0,0,0.5);
-    }
-
-    .ld-title {
-      position: relative; z-index: 5;
-      font-family: 'Rye', serif;
-      font-size: 2rem;
-      color: var(--gold);
-      text-shadow: 0 0 20px rgba(201,149,42,0.8), 2px 2px 0 #000;
-      letter-spacing: 4px;
-      margin-bottom: 6px;
-    }
-
-    .ld-sub {
-      position: relative; z-index: 5;
-      font-family: 'Crimson Text', serif;
-      font-size: 0.9rem;
-      color: var(--smoke);
-      letter-spacing: 3px;
-      text-transform: uppercase;
-      margin-bottom: 30px;
-    }
-
-    .ld-revolver {
-      position: relative; z-index: 5;
-      font-size: 2rem;
-      animation: spin 2s linear infinite;
-      display: inline-block;
-      margin-bottom: 20px;
-    }
-    @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
-
-    .ld-bar-wrap {
-      position: relative; z-index: 5;
-      width: 280px; height: 4px;
-      background: rgba(201,149,42,0.2);
-      border: 1px solid rgba(201,149,42,0.3);
-      border-radius: 2px;
-      overflow: hidden;
-    }
-    .ld-bar {
-      height: 100%; width: 0%;
-      background: linear-gradient(90deg, var(--rust), var(--gold), var(--gold-light));
-      transition: width 0.1s linear;
-      position: relative;
-    }
-    .ld-bar::after {
-      content: '';
-      position: absolute; right: 0; top: -3px; bottom: -3px; width: 6px;
-      background: white;
-      border-radius: 3px;
-      box-shadow: 0 0 8px white;
-    }
-
-    #ldPct {
-      position: relative; z-index: 5;
-      color: var(--gold); font-size: 0.8rem;
-      margin-top: 10px;
-      font-family: 'Rye', serif;
-      letter-spacing: 2px;
-    }
-
-    #loadingScreen.fade-out { animation: ldFade 0.8s ease-out forwards; }
-    @keyframes ldFade { to { opacity: 0; pointer-events: none; } }
-
-    /* ===== BACKGROUND ===== */
-    .bg-layer {
-      position: fixed; inset: 0; z-index: 0;
-      background:
-        radial-gradient(ellipse at top, #1e0e04 0%, #0d0a06 60%);
-    }
-
-    /* Stars in bg */
-    .bg-stars {
-      position: fixed; inset: 0; z-index: 0; pointer-events: none;
-      background-image:
-        radial-gradient(1px 1px at 15% 12%, rgba(255,220,120,0.6) 0%, transparent 100%),
-        radial-gradient(1px 1px at 75% 8%, rgba(255,220,120,0.5) 0%, transparent 100%),
-        radial-gradient(1.5px 1.5px at 45% 20%, rgba(255,220,120,0.8) 0%, transparent 100%),
-        radial-gradient(1px 1px at 88% 25%, rgba(255,220,120,0.4) 0%, transparent 100%),
-        radial-gradient(1px 1px at 5% 40%, rgba(255,220,120,0.6) 0%, transparent 100%),
-        radial-gradient(1px 1px at 60% 5%, rgba(255,220,120,0.7) 0%, transparent 100%),
-        radial-gradient(1px 1px at 30% 35%, rgba(255,220,120,0.4) 0%, transparent 100%),
-        radial-gradient(1.5px 1.5px at 92% 15%, rgba(255,220,120,0.9) 0%, transparent 100%),
-        radial-gradient(1px 1px at 55% 30%, rgba(255,220,120,0.5) 0%, transparent 100%),
-        radial-gradient(1px 1px at 22% 18%, rgba(255,220,120,0.6) 0%, transparent 100%);
-      background-size: 100% 100%;
-      animation: bgTwinkle 5s ease-in-out infinite alternate;
-    }
-    @keyframes bgTwinkle { from { opacity: 0.5; } to { opacity: 1; } }
-
-    /* Campfire glow */
-    .bg-fire-glow {
-      position: fixed; bottom: 0; left: 50%; transform: translateX(-50%);
-      width: 600px; height: 300px;
-      background: radial-gradient(ellipse at bottom center, rgba(180,60,10,0.25) 0%, transparent 70%);
-      pointer-events: none; z-index: 0;
-      animation: fireGlow 3s ease-in-out infinite alternate;
-    }
-    @keyframes fireGlow {
-      from { opacity: 0.6; transform: translateX(-50%) scale(1); }
-      to { opacity: 1; transform: translateX(-50%) scale(1.1); }
-    }
-
-    /* Horizontal rule decoration */
-    .ornate-divider {
-      display: flex; align-items: center; gap: 15px;
-      margin: 12px 0;
-      color: var(--gold);
-    }
-    .ornate-divider::before, .ornate-divider::after {
-      content: '';
-      flex: 1;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, var(--gold), transparent);
-    }
-    .ornate-divider span { font-size: 1rem; white-space: nowrap; }
-
-    /* ===== MAIN CONTAINER ===== */
-    .main-container {
-      position: relative; z-index: 1;
-      width: 100%; height: 100%;
-      display: flex; flex-direction: column; align-items: center; justify-content: flex-start;
-      padding: 30px 20px 20px;
-      overflow-y: auto;
-    }
-
-    /* Custom scrollbar */
-    .main-container::-webkit-scrollbar { width: 8px; }
-    .main-container::-webkit-scrollbar-track { background: var(--dirt); }
-    .main-container::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 4px; }
-
-    /* ===== HEADER ===== */
-    .header-section { text-align: center; margin-bottom: 20px; position: relative; }
-
-    .wanted-banner {
-      background: var(--parchment);
-      color: var(--night);
-      padding: 6px 30px;
-      font-family: 'Rye', serif;
-      font-size: 0.7rem;
-      letter-spacing: 6px;
-      text-transform: uppercase;
-      margin-bottom: -5px;
-      position: relative;
-      display: inline-block;
-      border-top: 3px solid var(--rust);
-      border-left: 3px solid var(--rust);
-      border-right: 3px solid var(--rust);
-      clip-path: polygon(0 0, 100% 0, 97% 100%, 3% 100%);
-    }
-
-    .logo-frame {
-      position: relative; display: inline-block;
-      margin-bottom: 10px;
-    }
-    .logo-frame::before {
-      content: '';
-      position: absolute; inset: -8px;
-      border: 2px solid var(--gold);
-      border-radius: 50%;
-      opacity: 0.5;
-      animation: rotateBorder 12s linear infinite;
-    }
-    .logo-frame::after {
-      content: '';
-      position: absolute; inset: -15px;
-      border: 1px dashed rgba(201,149,42,0.3);
-      border-radius: 50%;
-      animation: rotateBorder 20s linear infinite reverse;
-    }
-    @keyframes rotateBorder { to { transform: rotate(360deg); } }
-
-    .server-logo {
-      width: 90px; height: 90px; border-radius: 50%;
-      border: 3px solid var(--gold);
-      box-shadow:
-        0 0 30px rgba(201,149,42,0.5),
-        0 0 60px rgba(201,149,42,0.2),
-        inset 0 0 15px rgba(0,0,0,0.5);
-      position: relative; z-index: 1;
-      display: block;
-    }
-
-    .server-name {
-      font-family: 'Rye', serif;
-      font-size: 3rem;
-      color: var(--gold);
-      text-shadow:
-        0 0 20px rgba(201,149,42,0.6),
-        2px 2px 0 var(--rust-dark),
-        4px 4px 0 rgba(0,0,0,0.5);
-      letter-spacing: 3px;
-      line-height: 1;
-      margin-top: 8px;
-    }
-
-    .server-tagline {
-      font-family: 'Cinzel', serif;
-      font-size: 0.75rem;
-      color: var(--parchment-dark);
-      letter-spacing: 5px;
-      text-transform: uppercase;
-      margin-top: 4px;
-    }
-
-    .page-subtitle {
-      font-family: 'Cinzel', serif;
-      font-size: 0.95rem;
-      color: var(--smoke);
-      letter-spacing: 3px;
-      margin-top: 6px;
-      text-transform: uppercase;
-    }
-
-    /* ===== COUNTDOWN ===== */
-    .countdown-container {
-      background: linear-gradient(135deg, rgba(30,15,5,0.9), rgba(50,25,8,0.8));
-      border: 1px solid var(--gold);
-      padding: 10px 25px;
-      margin-top: 15px;
-      display: inline-flex; align-items: center; gap: 20px;
-      position: relative;
-      clip-path: polygon(15px 0, calc(100% - 15px) 0, 100% 50%, calc(100% - 15px) 100%, 15px 100%, 0 50%);
-    }
-    .countdown-container::before {
-      content: '🌵';
-      font-size: 1.2rem;
-    }
-    .countdown-container::after {
-      content: '🌵';
-      font-size: 1.2rem;
-    }
-
-    .cd-label {
-      font-family: 'Rye', serif;
-      font-size: 0.7rem;
-      color: var(--gold);
-      letter-spacing: 2px;
-      text-transform: uppercase;
-    }
-    .cd-timer {
-      font-family: 'Rye', serif;
-      font-size: 1.1rem;
-      color: var(--cream);
-      text-shadow: 0 0 10px rgba(201,149,42,0.5);
-    }
-
-    /* ===== TAB SYSTEM ===== */
-    .tab-wrapper { width: 100%; max-width: 820px; z-index: 10; margin-top: 20px; }
-
-    .tabs-nav {
-      display: flex; gap: 8px; margin-bottom: 0;
-      position: relative;
-    }
-
-    .tab-btn {
-      flex: 1; padding: 12px 10px;
-      background: linear-gradient(180deg, #2a1a0d 0%, #1a0e06 100%);
-      border: 1px solid rgba(201,149,42,0.3);
-      border-bottom: none;
-      color: var(--smoke);
-      cursor: pointer;
-      font-family: 'Rye', serif;
-      font-size: 0.75rem;
-      letter-spacing: 1px;
-      transition: all 0.3s;
-      position: relative;
-      clip-path: polygon(8px 0, calc(100% - 8px) 0, 100% 100%, 0 100%);
-    }
-    .tab-btn:hover { color: var(--gold-light); background: linear-gradient(180deg, #3d2510 0%, #2a1a0d 100%); }
-    .tab-btn.active {
-      background: linear-gradient(180deg, #4a2d10 0%, #3a2010 100%);
-      color: var(--gold);
-      border-color: var(--gold);
-      text-shadow: 0 0 10px rgba(201,149,42,0.5);
-    }
-    .tab-btn.active::after {
-      content: '';
-      position: absolute; bottom: -1px; left: 0; right: 0; height: 2px;
-      background: linear-gradient(180deg, #4a2d10 0%, #3a2010 100%);
-    }
-
-    /* ===== CONTENT CARD (Wanted Poster Style) ===== */
-    .content-card {
-      background:
-        linear-gradient(135deg, rgba(42,26,13,0.97), rgba(30,15,5,0.95));
-      border: 2px solid var(--gold);
-      border-top: none;
-      padding: 30px;
-      display: none;
-      position: relative;
-      overflow: hidden;
-    }
-
-    /* Aged texture overlay */
-    .content-card::before {
-      content: '';
-      position: absolute; inset: 0;
-      background-image:
-        repeating-linear-gradient(
-          0deg,
-          transparent,
-          transparent 2px,
-          rgba(201,149,42,0.01) 2px,
-          rgba(201,149,42,0.01) 4px
-        );
-      pointer-events: none;
-    }
-
-    /* Corner ornaments */
-    .content-card::after {
-      content: '✦';
-      position: absolute; top: 12px; left: 12px;
-      color: var(--gold); opacity: 0.4; font-size: 1rem;
-    }
-
-    .corner-br {
-      position: absolute; bottom: 12px; right: 12px;
-      color: var(--gold); opacity: 0.4; font-size: 1rem;
-      pointer-events: none;
-    }
-
-    .content-card.active {
-      display: block;
-      animation: fadeInUp 0.5s ease;
-    }
-
-    .card-title {
-      font-family: 'Rye', serif;
-      font-size: 1.4rem;
-      color: var(--gold);
-      text-shadow: 0 0 15px rgba(201,149,42,0.4), 1px 1px 0 #000;
-      letter-spacing: 2px;
-      margin-bottom: 5px;
-    }
-
-    /* ===== INFO GRID ===== */
-    .info-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-      gap: 12px; margin: 18px 0;
-    }
-
-    .info-item {
-      background: rgba(0,0,0,0.3);
-      padding: 14px 15px;
-      border: 1px solid rgba(201,149,42,0.2);
-      position: relative;
-      border-left: 3px solid var(--gold);
-    }
-    .info-item::before {
-      content: '';
-      position: absolute; top: 0; left: 0; right: 0; height: 1px;
-      background: linear-gradient(90deg, var(--gold), transparent);
-    }
-
-    .info-label {
-      font-family: 'Cinzel', serif;
-      font-size: 0.65rem;
-      color: var(--parchment-dark);
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      margin-bottom: 6px;
-    }
-    .info-value {
-      font-family: 'Crimson Text', serif;
-      font-size: 1.05rem;
-      color: var(--cream);
-      font-weight: 600;
-    }
-
-    .info-item.cost-item { border-left-color: var(--gold-light); }
-    .info-item.cost-item .info-value { color: var(--gold-light); font-size: 1.2rem; }
-
-    /* ===== NOTE BOX ===== */
-    .note-box {
-      background: rgba(120, 26, 26, 0.15);
-      padding: 14px 18px;
-      border: 1px solid rgba(122,26,26,0.4);
-      border-left: 3px solid var(--blood);
-      font-size: 0.9rem;
-      color: #e8a0a0;
-      line-height: 1.7;
-      position: relative;
-    }
-    .note-box::before {
-      content: '⚠';
-      margin-right: 8px;
-      color: var(--blood);
-    }
-
-    /* ===== BUTTONS ===== */
-    .action-area { margin-top: 22px; display: flex; justify-content: center; }
-
-    .btn-interview {
-      background: linear-gradient(135deg, var(--rust) 0%, var(--rust-dark) 100%);
-      color: var(--cream);
-      padding: 12px 40px;
-      border: 2px solid var(--gold);
-      font-family: 'Rye', serif;
-      font-size: 0.85rem;
-      letter-spacing: 2px;
-      cursor: pointer;
-      transition: all 0.3s;
-      position: relative;
-      clip-path: polygon(10px 0, calc(100% - 10px) 0, 100% 50%, calc(100% - 10px) 100%, 10px 100%, 0 50%);
-      text-shadow: 1px 1px 0 rgba(0,0,0,0.5);
-    }
-    .btn-interview:hover {
-      background: linear-gradient(135deg, #a04020 0%, var(--rust) 100%);
-      box-shadow: 0 0 20px rgba(201,149,42,0.4);
-      transform: scale(1.03);
-    }
-
-    /* ===== FOOTER ===== */
-    .footer-link {
-      margin-top: 30px; padding: 20px;
-      text-align: center; width: 100%;
-      border-top: 1px solid rgba(201,149,42,0.2);
-      position: relative;
-    }
-    .footer-link::before {
-      content: '— ✦ —';
-      position: absolute; top: -1px; left: 50%; transform: translateX(-50%);
-      background: var(--night); padding: 0 15px;
-      color: rgba(201,149,42,0.5); font-size: 0.8rem;
-    }
-
-    .btn-external {
-      color: var(--parchment-dark);
-      text-decoration: none;
-      font-family: 'Cinzel', serif;
-      font-size: 0.8rem;
-      letter-spacing: 2px;
-      padding: 10px 25px;
-      border: 1px solid rgba(201,149,42,0.3);
-      transition: all 0.3s;
-      text-transform: uppercase;
-      display: inline-block;
-    }
-    .btn-external:hover {
-      color: var(--gold);
-      border-color: var(--gold);
-      background: rgba(201,149,42,0.1);
-    }
-
-    /* ===== MODAL ===== */
-    .modal-overlay {
-      position: fixed; inset: 0;
-      background: rgba(0,0,0,0.92);
-      display: none; justify-content: center; align-items: center;
-      z-index: 10000; backdrop-filter: blur(8px); padding: 20px;
-    }
-
-    .modal-content {
-      background: linear-gradient(160deg, #2a1a0d, #1a0d06);
-      width: 100%; max-width: 580px; max-height: 90vh;
-      border: 2px solid var(--gold);
-      padding: 35px;
-      overflow-y: auto; position: relative;
-    }
-    .modal-content::before {
-      content: '';
-      position: absolute; inset: 5px;
-      border: 1px solid rgba(201,149,42,0.2);
-      pointer-events: none;
-    }
-
-    .modal-title {
-      font-family: 'Rye', serif;
-      font-size: 1.2rem;
-      color: var(--gold);
-      margin-bottom: 5px;
-      letter-spacing: 2px;
-    }
-
-    .close-modal {
-      position: absolute; top: 15px; right: 20px;
-      background: none; border: 1px solid rgba(201,149,42,0.3);
-      color: var(--smoke); font-size: 1.4rem;
-      cursor: pointer; width: 36px; height: 36px;
-      display: flex; align-items: center; justify-content: center;
-      transition: all 0.3s;
-    }
-    .close-modal:hover { border-color: var(--gold); color: var(--gold); }
-
-    .step-box {
-      margin-bottom: 10px; padding: 12px 15px;
-      background: rgba(0,0,0,0.3);
-      border: 1px solid rgba(201,149,42,0.15);
-      border-left: 3px solid var(--rust);
-      display: flex; gap: 15px; align-items: flex-start;
-    }
-
-    .step-num {
-      width: 28px; height: 28px;
-      background: var(--rust);
-      border: 1px solid var(--gold);
-      color: var(--cream);
-      display: flex; align-items: center; justify-content: center;
-      font-family: 'Rye', serif;
-      font-size: 0.8rem;
-      flex-shrink: 0;
-    }
-
-    .step-text {
-      font-size: 0.95rem;
-      line-height: 1.6;
-      color: var(--cream);
-      padding-top: 2px;
-    }
-
-    .advice-box {
-      margin-top: 18px; padding: 15px 18px;
-      background: rgba(201,149,42,0.05);
-      border: 1px dashed rgba(201,149,42,0.4);
-      font-size: 0.9rem;
-      color: var(--smoke);
-      line-height: 1.7;
-    }
-
-    /* ===== DECORATIVE ELEMENTS ===== */
-    .bullet-decor {
-      display: inline-block; width: 6px; height: 6px;
-      background: var(--gold); border-radius: 50%;
-      margin: 0 8px; vertical-align: middle; opacity: 0.6;
-    }
-
-    /* Bottom silhouette */
-    .ground-silhouette {
-      position: fixed; bottom: 0; left: 0; right: 0;
-      height: 80px; z-index: 0; pointer-events: none;
-      overflow: hidden;
-    }
-    .ground-silhouette svg { width: 100%; height: 100%; }
-
-    @keyframes fadeInUp {
-      from { opacity: 0; transform: translateY(15px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    /* ===== SCHEDULE TAB ===== */
-    .schedule-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-      gap: 10px;
-      margin: 18px 0;
-    }
-
-    .sched-day {
-      padding: 14px 12px;
-      border: 1px solid rgba(201,149,42,0.2);
-      border-radius: 2px;
-      position: relative;
-    }
-
-    .closed-day {
-      background: rgba(0,0,0,0.35);
-      border-left: 3px solid #444;
-      opacity: 0.75;
-    }
-
-    .open-day {
-      background: rgba(30,18,6,0.6);
-      border-left: 3px solid var(--gold);
-    }
-
-    .highlight-day {
-      background: rgba(60,25,5,0.7);
-      border-left: 3px solid var(--rust);
-    }
-
-    .sched-day-name {
-      font-family: 'Rye', serif;
-      font-size: 0.9rem;
-      color: var(--gold);
-      margin-bottom: 6px;
-    }
-
-    .sched-status {
-      display: inline-block;
-      padding: 2px 10px;
-      font-family: 'Cinzel', serif;
-      font-size: 0.6rem;
-      letter-spacing: 1px;
-      border-radius: 2px;
-      margin-bottom: 8px;
-    }
-
-    .closed-badge {
-      background: rgba(60,60,60,0.5);
-      color: #888;
-      border: 1px solid #555;
-    }
-
-    .open-badge {
-      background: rgba(40,100,40,0.3);
-      color: #7ecf7e;
-      border: 1px solid rgba(100,180,100,0.4);
-    }
-
-    .sched-extra {
-      font-size: 0.75rem;
-      color: var(--smoke);
-      line-height: 1.5;
-      opacity: 0.8;
-    }
-
-    .sched-activity {
-      font-size: 0.8rem;
-      color: var(--cream);
-      margin-bottom: 8px;
-    }
-
-    .sched-event {
-      background: rgba(122,26,26,0.2);
-      border: 1px solid rgba(122,26,26,0.5);
-      border-left: 3px solid var(--blood);
-      padding: 8px 10px;
-      margin-top: 6px;
-    }
-
-    .event-time {
-      display: block;
-      font-family: 'Rye', serif;
-      font-size: 0.75rem;
-      color: var(--gold-light);
-      margin-bottom: 3px;
-    }
-
-    .event-name {
-      display: block;
-      font-size: 0.85rem;
-      color: #e8a0a0;
-      font-weight: 600;
-      margin-bottom: 4px;
-    }
-
-    .event-desc {
-      font-size: 0.75rem;
-      color: var(--smoke);
-      line-height: 1.5;
-    }
-
-    .bonus-note {
-      background: rgba(201,149,42,0.06);
-      border: 1px dashed rgba(201,149,42,0.35);
-      padding: 15px 18px;
-      font-size: 0.9rem;
-      color: var(--smoke);
-      line-height: 1.8;
-      margin-top: 10px;
-    }
-
-    .attend-warning {
-      display: flex;
-      gap: 14px;
-      align-items: flex-start;
-      background: rgba(120, 20, 20, 0.2);
-      border: 1px solid rgba(180, 40, 40, 0.5);
-      border-left: 4px solid #c03030;
-      padding: 16px 18px;
-      font-size: 0.9rem;
-      color: #e8c0c0;
-      line-height: 1.8;
-      margin-top: 12px;
-    }
-
-    .attend-icon {
-      font-size: 1.4rem;
-      flex-shrink: 0;
-      margin-top: 2px;
-    }
-
-    /* Dust particles */
-    .dust {
-      position: fixed; z-index: 0; pointer-events: none;
-      border-radius: 50%;
-      background: rgba(201,149,42,0.15);
-      animation: floatDust linear infinite;
-    }
-    @keyframes floatDust {
-      from { transform: translateY(100vh) translateX(0) rotate(0deg); opacity: 0; }
-      10% { opacity: 1; }
-      90% { opacity: 0.5; }
-      to { transform: translateY(-20px) translateX(50px) rotate(360deg); opacity: 0; }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ตารางกิจกรรม 7 วัน</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;600;700&display=swap');
+
+  :root {
+    --mon: #FF6B6B;
+    --tue: #FF9F43;
+    --wed: #FFEAA7;
+    --thu: #55EFC4;
+    --fri: #74B9FF;
+    --sat: #A29BFE;
+    --sun: #FD79A8;
+    --bg: #F8F9FF;
+    --card: #ffffff;
+    --text: #2d3436;
+    --muted: #636e72;
+    --radius: 14px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Prompt', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    padding: 16px 12px 60px;
+  }
+
+  /* ── COLOR PICKER PANEL ── */
+  .color-panel {
+    background: white;
+    border-radius: var(--radius);
+    padding: 14px 16px;
+    margin-bottom: 16px;
+    box-shadow: 0 2px 12px rgba(0,0,0,.07);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    align-items: center;
+  }
+  .color-panel h3 { font-size: .75rem; color: var(--muted); letter-spacing: .05em; text-transform: uppercase; width: 100%; }
+  .color-swatch { display: flex; flex-direction: column; align-items: center; gap: 3px; }
+  .color-swatch label { font-size: .65rem; color: var(--muted); }
+  .color-swatch input[type=color] {
+    width: 34px; height: 34px; border: none; border-radius: 50%;
+    cursor: pointer; padding: 2px; background: none;
+  }
+  .bg-pick { margin-left: auto; display: flex; align-items: center; gap: 8px; }
+  .bg-pick label { font-size: .72rem; color: var(--muted); }
+  .bg-pick input[type=color] { width: 32px; height: 32px; border: none; border-radius: 8px; cursor: pointer; }
+
+  /* ── TOOLBAR ── */
+  .toolbar {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 12px;
+  }
+  .btn-save {
+    display: flex; align-items: center; gap: 8px;
+    background: linear-gradient(135deg,#6c5ce7,#a29bfe);
+    color: white; border: none; border-radius: 30px;
+    padding: 10px 22px; font-family: 'Prompt', sans-serif;
+    font-size: .85rem; font-weight: 600; cursor: pointer;
+    box-shadow: 0 4px 14px rgba(108,92,231,.35);
+    transition: transform .15s, box-shadow .15s;
+  }
+  .btn-save:hover { transform: translateY(-2px); box-shadow: 0 6px 18px rgba(108,92,231,.45); }
+  .btn-save svg { width:18px; height:18px; }
+
+  /* ── CAPTURE ZONE ── */
+  #capture {
+    background: var(--bg);
+    border-radius: var(--radius);
+    padding: 20px 12px 24px;
+  }
+
+  /* ── TITLE ── */
+  .title-wrap {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  #page-title {
+    font-size: clamp(1.3rem, 5vw, 1.9rem);
+    font-weight: 700;
+    color: var(--text);
+    border: none;
+    border-bottom: 3px dashed #dfe6e9;
+    background: transparent;
+    text-align: center;
+    width: 100%;
+    max-width: 500px;
+    outline: none;
+    padding: 6px 12px;
+    font-family: 'Prompt', sans-serif;
+    transition: border-color .2s;
+  }
+  #page-title:focus { border-bottom-color: #6c5ce7; }
+  .title-hint { font-size: .72rem; color: #b2bec3; margin-top: 4px; }
+
+  /* ── DESKTOP TABLE (hidden on mobile) ── */
+  .table-wrap {
+    overflow-x: auto;
+    display: none;
+  }
+  @media (min-width: 700px) {
+    .table-wrap { display: block; }
+    .mobile-days { display: none !important; }
+  }
+  table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 8px;
+    min-width: 700px;
+  }
+  thead th {
+    padding: 10px 8px 12px;
+    font-size: .82rem;
+    font-weight: 700;
+    letter-spacing: .03em;
+    border-radius: 10px;
+    text-align: center;
+    color: white;
+    white-space: nowrap;
+  }
+  .th-mon { background: var(--mon); }
+  .th-tue { background: var(--tue); }
+  .th-wed { background: var(--wed); color: #555 !important; }
+  .th-thu { background: var(--thu); color: #333 !important; }
+  .th-fri { background: var(--fri); }
+  .th-sat { background: var(--sat); }
+  .th-sun { background: var(--sun); }
+  .th-day-name { font-size: 1.05rem; display: block; }
+  .th-day-en { font-size: .65rem; opacity: .8; font-weight: 400; }
+
+  /* ── CELL ── */
+  td {
+    vertical-align: top;
+    padding: 6px;
+    width: calc(100% / 7);
+  }
+  .cell-inner {
+    background: var(--card);
+    border-radius: 12px;
+    padding: 8px;
+    min-height: 160px;
+    box-shadow: 0 2px 8px rgba(0,0,0,.06);
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  /* ── MOBILE DAYS ── */
+  .mobile-days {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .mobile-day {
+    background: var(--card);
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: 0 2px 10px rgba(0,0,0,.07);
+  }
+  .mobile-day-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 16px;
+    cursor: pointer;
+    user-select: none;
+    transition: opacity .15s;
+  }
+  .mobile-day-header:active { opacity: .8; }
+  .mobile-day-title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .mobile-day-dot {
+    width: 14px; height: 14px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+  .mobile-day-name {
+    font-size: 1rem;
+    font-weight: 700;
+  }
+  .mobile-day-en {
+    font-size: .7rem;
+    opacity: .6;
+    font-weight: 400;
+  }
+  .mobile-day-count {
+    font-size: .72rem;
+    background: rgba(0,0,0,.07);
+    border-radius: 20px;
+    padding: 2px 8px;
+    color: var(--muted);
+  }
+  .mobile-day-arrow {
+    font-size: .9rem;
+    color: var(--muted);
+    transition: transform .2s;
+  }
+  .mobile-day.open .mobile-day-arrow { transform: rotate(180deg); }
+  .mobile-day-body {
+    display: none;
+    flex-direction: column;
+    gap: 6px;
+    padding: 0 12px 12px;
+  }
+  .mobile-day.open .mobile-day-body { display: flex; }
+
+  /* ── ACTIVITY CARD ── */
+  .activity {
+    border-radius: 8px;
+    padding: 7px 30px 7px 10px;
+    font-size: .78rem;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+  .activity .time-badge {
+    font-size: .67rem;
+    font-weight: 700;
+    opacity: .85;
+  }
+  .activity .act-name {
+    font-weight: 600;
+    word-break: break-word;
+    line-height: 1.35;
+  }
+  .activity .act-note {
+    font-size: .67rem;
+    opacity: .75;
+    word-break: break-word;
+  }
+  .act-delete {
+    position: absolute; top: 5px; right: 6px;
+    background: rgba(0,0,0,.08); border: none; cursor: pointer;
+    font-size: .65rem; opacity: .6; line-height:1;
+    padding: 2px 4px; border-radius: 4px;
+    transition: opacity .15s, background .15s;
+  }
+  .act-delete:hover { opacity: 1; background: rgba(200,0,0,.15); }
+
+  /* ── ADD BUTTON ── */
+  .btn-add {
+    background: #f0f0f8;
+    border: 2px dashed #dde;
+    border-radius: 8px;
+    padding: 8px;
+    font-family: 'Prompt', sans-serif;
+    font-size: .75rem;
+    color: #999;
+    cursor: pointer;
+    width: 100%;
+    transition: background .15s, color .15s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+  }
+  .btn-add:hover { background: #e8e8ff; color: #6c5ce7; border-color: #a29bfe; }
+
+  /* ── ADD WITH TIME BUTTON ── */
+  .btn-add-time {
+    background: #fff8f0;
+    border: 2px dashed #ffd0a0;
+    border-radius: 8px;
+    padding: 7px;
+    font-family: 'Prompt', sans-serif;
+    font-size: .72rem;
+    color: #c47c2a;
+    cursor: pointer;
+    width: 100%;
+    transition: background .15s, color .15s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+  }
+  .btn-add-time:hover { background: #fff0dc; color: #e07b1a; border-color: #f0a050; }
+
+  /* ── QUICK TIME CHIPS ── */
+  .quick-time-label { font-size: .74rem; color: var(--muted); margin-bottom: 4px; margin-top: 14px; display: block; }
+  .quick-chips {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    margin-bottom: 2px;
+  }
+  .chip {
+    background: #f0f0ff;
+    border: 1.5px solid #d4d4f7;
+    border-radius: 20px;
+    padding: 4px 12px;
+    font-family: 'Prompt', sans-serif;
+    font-size: .72rem;
+    color: #6c5ce7;
+    cursor: pointer;
+    transition: background .15s, border-color .15s;
+    white-space: nowrap;
+  }
+  .chip:hover { background: #e0e0ff; border-color: #a29bfe; }
+
+  /* ── MODAL ── */
+  .overlay {
+    display: none;
+    position: fixed; inset: 0;
+    background: rgba(45,52,54,.55);
+    backdrop-filter: blur(3px);
+    z-index: 100;
+    align-items: flex-end;
+    justify-content: center;
+  }
+  @media (min-width: 600px) {
+    .overlay { align-items: center; }
+  }
+  .overlay.show { display: flex; }
+  .modal {
+    background: white;
+    border-radius: 20px 20px 0 0;
+    padding: 24px 20px 32px;
+    width: 100%;
+    max-width: 480px;
+    box-shadow: 0 -8px 40px rgba(0,0,0,.18);
+    animation: slideUp .25s ease;
+    max-height: 92vh;
+    overflow-y: auto;
+  }
+  @media (min-width: 600px) {
+    .modal {
+      border-radius: 20px;
+      padding: 28px 28px 24px;
+      box-shadow: 0 20px 50px rgba(0,0,0,.18);
+      animation: pop .2s ease;
+    }
+  }
+  @keyframes slideUp {
+    from { transform: translateY(40px); opacity: 0; }
+    to   { transform: translateY(0);    opacity: 1; }
+  }
+  @keyframes pop {
+    from { transform: scale(.92); opacity: 0; }
+    to   { transform: scale(1);   opacity: 1; }
+  }
+  .modal-drag { width: 40px; height: 4px; background: #ddd; border-radius: 4px; margin: 0 auto 18px; }
+  @media (min-width: 600px) { .modal-drag { display: none; } }
+  .modal h2 { font-size: 1.1rem; font-weight: 700; margin-bottom: 16px; }
+  .modal label { display: block; font-size: .78rem; color: var(--muted); margin-bottom: 4px; margin-top: 12px; }
+  .modal input, .modal textarea {
+    width: 100%; padding: 10px 12px;
+    border: 1.5px solid #dfe6e9; border-radius: 10px;
+    font-family: 'Prompt', sans-serif; font-size: .9rem;
+    outline: none; transition: border-color .2s;
+  }
+  .modal input:focus, .modal textarea:focus { border-color: #6c5ce7; }
+  .modal textarea { resize: vertical; min-height: 60px; }
+  .time-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .color-row { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 6px; }
+  .color-dot {
+    width: 28px; height: 28px; border-radius: 50%; cursor: pointer;
+    border: 3px solid transparent; transition: transform .15s, border-color .15s;
+  }
+  .color-dot.active, .color-dot:hover { transform: scale(1.2); border-color: var(--text); }
+  .modal-btns { display: flex; gap: 10px; margin-top: 20px; }
+  .modal-btns button {
+    flex: 1; padding: 12px; border: none; border-radius: 10px;
+    font-family: 'Prompt', sans-serif; font-weight: 600; cursor: pointer; font-size: .88rem;
+  }
+  .btn-cancel { background: #f5f6fa; color: var(--muted); }
+  .btn-confirm { background: #6c5ce7; color: white; }
+  .btn-confirm:hover { background: #5a4bd1; }
+
+
+  /* ── FLOATING ACTION BUTTON ── */
+  .fab {
+    position: fixed;
+    bottom: 28px;
+    right: 24px;
+    width: 58px;
+    height: 58px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #6c5ce7, #a29bfe);
+    color: white;
+    border: none;
+    font-size: 1.6rem;
+    cursor: pointer;
+    box-shadow: 0 6px 20px rgba(108,92,231,.45);
+    z-index: 90;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform .2s, box-shadow .2s;
+  }
+  .fab:hover { transform: scale(1.1); box-shadow: 0 8px 26px rgba(108,92,231,.55); }
+  .fab.open { transform: rotate(45deg); }
+  .fab-icon { line-height: 1; transition: transform .2s; }
+
+  /* ── DAY PICKER POPUP ── */
+  .day-picker {
+    position: fixed;
+    bottom: 96px;
+    right: 24px;
+    background: white;
+    border-radius: 16px;
+    padding: 16px;
+    box-shadow: 0 8px 32px rgba(0,0,0,.18);
+    z-index: 89;
+    width: 260px;
+    transform: scale(.85) translateY(20px);
+    transform-origin: bottom right;
+    opacity: 0;
+    pointer-events: none;
+    transition: transform .2s ease, opacity .2s ease;
+  }
+  .day-picker.open {
+    transform: scale(1) translateY(0);
+    opacity: 1;
+    pointer-events: all;
+  }
+  .day-picker-title {
+    font-size: .75rem;
+    color: var(--muted);
+    margin-bottom: 10px;
+    font-weight: 600;
+    letter-spacing: .03em;
+  }
+  .day-picker-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+  .day-btn {
+    padding: 10px 8px;
+    border: none;
+    border-radius: 10px;
+    font-family: 'Prompt', sans-serif;
+    font-size: .82rem;
+    font-weight: 600;
+    cursor: pointer;
+    color: white;
+    transition: transform .15s, filter .15s;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .day-btn:hover { transform: scale(1.04); filter: brightness(1.08); }
+  .day-btn.dark-text { color: #333 !important; }
+
+  /* ── CAPTURE HIDE CONTROLS ── */
+  .no-print { }
+  #capture .no-print { display: none !important; }
+
+  /* ── SAVING OVERLAY ── */
+  #saving-overlay {
+    display: none;
+    position: fixed; inset: 0;
+    background: rgba(0,0,0,.4);
+    z-index: 200;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 12px;
+    color: white;
+    font-family: 'Prompt', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+  }
+  #saving-overlay.show { display: flex; }
+  .spinner {
+    width: 36px; height: 36px;
+    border: 4px solid rgba(255,255,255,.3);
+    border-top-color: white;
+    border-radius: 50%;
+    animation: spin .8s linear infinite;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+</style>
 </head>
 <body>
 
-<!-- Dust particles -->
-<div class="dust" style="width:4px;height:4px;left:15%;animation-duration:18s;animation-delay:0s;"></div>
-<div class="dust" style="width:3px;height:3px;left:35%;animation-duration:22s;animation-delay:5s;"></div>
-<div class="dust" style="width:5px;height:5px;left:60%;animation-duration:15s;animation-delay:2s;"></div>
-<div class="dust" style="width:2px;height:2px;left:80%;animation-duration:20s;animation-delay:8s;"></div>
-<div class="dust" style="width:4px;height:4px;left:50%;animation-duration:25s;animation-delay:3s;"></div>
+<!-- COLOR CUSTOMIZER -->
+<div class="color-panel no-print">
+  <h3>🎨 ปรับสีวัน</h3>
+  <div class="color-swatch"><label>จันทร์</label><input type="color" id="c-mon" value="#FF6B6B" oninput="setColor('--mon',this.value)"></div>
+  <div class="color-swatch"><label>อังคาร</label><input type="color" id="c-tue" value="#FF9F43" oninput="setColor('--tue',this.value)"></div>
+  <div class="color-swatch"><label>พุธ</label><input type="color" id="c-wed" value="#FFEAA7" oninput="setColor('--wed',this.value)"></div>
+  <div class="color-swatch"><label>พฤหัส</label><input type="color" id="c-thu" value="#55EFC4" oninput="setColor('--thu',this.value)"></div>
+  <div class="color-swatch"><label>ศุกร์</label><input type="color" id="c-fri" value="#74B9FF" oninput="setColor('--fri',this.value)"></div>
+  <div class="color-swatch"><label>เสาร์</label><input type="color" id="c-sat" value="#A29BFE" oninput="setColor('--sat',this.value)"></div>
+  <div class="color-swatch"><label>อาทิตย์</label><input type="color" id="c-sun" value="#FD79A8" oninput="setColor('--sun',this.value)"></div>
+  <div class="bg-pick">
+    <label>พื้นหลัง</label>
+    <input type="color" id="c-bg" value="#F8F9FF" oninput="setColor('--bg',this.value);document.getElementById('capture').style.background=this.value">
+  </div>
+</div>
 
-<!-- Loading Screen -->
-<div id="loadingScreen">
-  <div class="ld-stars"></div>
-  <div class="ld-moon"></div>
-  <div class="ld-desert">
-    <svg viewBox="0 0 1440 150" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M0,100 L50,100 L55,60 L60,100 L100,100 L105,40 L108,20 L111,40 L116,100 L200,100 L210,80 L220,100 L300,100 L310,90 L315,70 L320,90 L340,90 L345,50 L350,90 L400,100 L500,100 L510,85 L515,60 L520,85 L550,100 L600,100 L650,100 L660,80 L665,55 L668,35 L671,55 L676,80 L700,100 L750,100 L760,90 L770,100 L800,100 L820,100 L825,70 L830,50 L835,70 L840,100 L900,100 L950,100 L960,85 L965,65 L970,85 L1000,100 L1050,100 L1060,80 L1070,100 L1100,100 L1110,60 L1115,30 L1118,15 L1121,30 L1126,60 L1140,100 L1200,100 L1250,100 L1280,90 L1290,100 L1350,100 L1400,100 L1440,100 L1440,150 L0,150 Z" fill="#1a0d06"/>
-      <path d="M0,120 L200,120 L210,110 L220,120 L400,120 L410,115 L420,120 L600,120 L650,120 L700,120 L750,120 L800,120 L900,120 L950,120 L1000,120 L1100,120 L1200,120 L1300,120 L1440,120 L1440,150 L0,150 Z" fill="#0d0a06"/>
+<!-- SAVE TOOLBAR -->
+<div class="toolbar no-print">
+  <button class="btn-save" onclick="saveImage()">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+      <polyline points="7 10 12 15 17 10"/>
+      <line x1="12" y1="15" x2="12" y2="3"/>
     </svg>
-  </div>
-
-  <div class="ld-logo">
-    <img src="https://img2.pic.in.th/1001043243.png" alt="Holly Grave Logo">
-  </div>
-  <div class="ld-title">Holly Grave</div>
-  <div class="ld-sub">Roleplay Server</div>
-  <div class="ld-revolver">⚙</div>
-  <div class="ld-bar-wrap"><div class="ld-bar" id="ldBar"></div></div>
-  <div id="ldPct">0%</div>
+    บันทึกรูปตาราง
+  </button>
 </div>
 
-<!-- Background layers -->
-<div class="bg-layer"></div>
-<div class="bg-stars"></div>
-<div class="bg-fire-glow"></div>
+<!-- CAPTURE ZONE -->
+<div id="capture">
+  <!-- TITLE -->
+  <div class="title-wrap">
+    <input id="page-title" type="text" value="ตารางกิจกรรมประจำสัปดาห์" placeholder="พิมพ์หัวข้อที่นี่…" />
+    <div class="title-hint no-print">✏️ คลิกเพื่อแก้ไขหัวข้อ</div>
+  </div>
 
-<!-- Ground silhouette -->
-<div class="ground-silhouette">
-  <svg viewBox="0 0 1440 80" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M0,50 L100,50 L110,30 L115,15 L120,30 L130,50 L300,50 L310,40 L320,50 L500,50 L520,50 L525,35 L530,20 L533,10 L536,20 L541,35 L546,50 L600,50 L700,50 L710,40 L720,50 L800,50 L900,50 L910,30 L915,15 L920,30 L930,50 L1100,50 L1110,40 L1120,50 L1300,50 L1310,35 L1315,20 L1320,35 L1330,50 L1440,50 L1440,80 L0,80 Z" fill="#0d0a06"/>
-  </svg>
+  <!-- DESKTOP TABLE -->
+  <div class="table-wrap">
+    <table id="week-table">
+      <thead>
+        <tr>
+          <th class="th-mon"><span class="th-day-name">จันทร์</span><span class="th-day-en">Monday</span></th>
+          <th class="th-tue"><span class="th-day-name">อังคาร</span><span class="th-day-en">Tuesday</span></th>
+          <th class="th-wed"><span class="th-day-name">พุธ</span><span class="th-day-en">Wednesday</span></th>
+          <th class="th-thu"><span class="th-day-name">พฤหัสบดี</span><span class="th-day-en">Thursday</span></th>
+          <th class="th-fri"><span class="th-day-name">ศุกร์</span><span class="th-day-en">Friday</span></th>
+          <th class="th-sat"><span class="th-day-name">เสาร์</span><span class="th-day-en">Saturday</span></th>
+          <th class="th-sun"><span class="th-day-name">อาทิตย์</span><span class="th-day-en">Sunday</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr id="main-row">
+          <td><div class="cell-inner" id="cell-mon"><button class="btn-add no-print" onclick="openModal('mon')">＋ เพิ่มกิจกรรม</button><button class="btn-add-time no-print" onclick="openModalWithTime('mon')">⏰ ระบุเวลา</button></div></td>
+          <td><div class="cell-inner" id="cell-tue"><button class="btn-add no-print" onclick="openModal('tue')">＋ เพิ่มกิจกรรม</button><button class="btn-add-time no-print" onclick="openModalWithTime('tue')">⏰ ระบุเวลา</button></div></td>
+          <td><div class="cell-inner" id="cell-wed"><button class="btn-add no-print" onclick="openModal('wed')">＋ เพิ่มกิจกรรม</button><button class="btn-add-time no-print" onclick="openModalWithTime('wed')">⏰ ระบุเวลา</button></div></td>
+          <td><div class="cell-inner" id="cell-thu"><button class="btn-add no-print" onclick="openModal('thu')">＋ เพิ่มกิจกรรม</button><button class="btn-add-time no-print" onclick="openModalWithTime('thu')">⏰ ระบุเวลา</button></div></td>
+          <td><div class="cell-inner" id="cell-fri"><button class="btn-add no-print" onclick="openModal('fri')">＋ เพิ่มกิจกรรม</button><button class="btn-add-time no-print" onclick="openModalWithTime('fri')">⏰ ระบุเวลา</button></div></td>
+          <td><div class="cell-inner" id="cell-sat"><button class="btn-add no-print" onclick="openModal('sat')">＋ เพิ่มกิจกรรม</button><button class="btn-add-time no-print" onclick="openModalWithTime('sat')">⏰ ระบุเวลา</button></div></td>
+          <td><div class="cell-inner" id="cell-sun"><button class="btn-add no-print" onclick="openModal('sun')">＋ เพิ่มกิจกรรม</button><button class="btn-add-time no-print" onclick="openModalWithTime('sun')">⏰ ระบุเวลา</button></div></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- MOBILE DAYS -->
+  <div class="mobile-days" id="mobile-days">
+    <!-- generated by JS -->
+  </div>
 </div>
 
-<!-- Main Content -->
-<div class="main-container">
-  <div class="header-section">
-    <div class="wanted-banner">★ Recruitment ★</div>
-    <div class="logo-frame">
-      <img src="https://img2.pic.in.th/1001043243.png" class="server-logo" alt="Holly Grave">
+<!-- MODAL -->
+<div class="overlay" id="modal-overlay" onclick="closeIfOutside(event)">
+  <div class="modal">
+    <div class="modal-drag"></div>
+    <h2 id="modal-title">เพิ่มกิจกรรม</h2>
+
+    <label>ชื่อกิจกรรม *</label>
+    <input id="act-name" type="text" placeholder="เช่น ประชุมทีม, ออกกำลังกาย…" />
+
+    <span class="quick-time-label">⚡ เลือกช่วงเวลาด่วน</span>
+    <div class="quick-chips">
+      <button type="button" class="chip" onclick="setQuickTime('06:00','07:00')">🌅 เช้าตรู่</button>
+      <button type="button" class="chip" onclick="setQuickTime('08:00','09:00')">☀️ เช้า</button>
+      <button type="button" class="chip" onclick="setQuickTime('12:00','13:00')">🌤 เที่ยง</button>
+      <button type="button" class="chip" onclick="setQuickTime('14:00','15:00')">🌇 บ่าย</button>
+      <button type="button" class="chip" onclick="setQuickTime('18:00','19:00')">🌆 เย็น</button>
+      <button type="button" class="chip" onclick="setQuickTime('20:00','21:00')">🌙 ค่ำ</button>
     </div>
-    <div class="server-name">Holly Grave</div>
-    <div class="server-tagline">▸ Roleplay Server ◂</div>
-    <div class="page-subtitle">ตารางกำหนดการ</div>
 
-    <div class="countdown-container">
-      <div class="cd-label" id="cdTitle">LOADING...</div>
-      <div class="cd-timer" id="timer">00:00:00:00</div>
+    <label>เวลาเริ่ม – สิ้นสุด (หรือกำหนดเอง)</label>
+    <div class="time-row">
+      <input id="act-start" type="time" />
+      <input id="act-end" type="time" />
     </div>
-  </div>
 
-  <div class="tab-wrapper" id="app-content"></div>
+    <label>หมายเหตุ (ไม่บังคับ)</label>
+    <textarea id="act-note" placeholder="รายละเอียดเพิ่มเติม…"></textarea>
 
-  <div class="footer-link">
-    <a href="https://tr-studio.github.io/TR-Studio.github.io-Holly_Last/" target="_blank" class="btn-external">
-      🌐 ข้อมูลเพิ่มเติม (Official Site)
-    </a>
+    <label>สีการ์ด</label>
+    <div class="color-row" id="color-row"></div>
+
+    <div class="modal-btns">
+      <button class="btn-cancel" onclick="closeModal()">ยกเลิก</button>
+      <button class="btn-confirm" onclick="addActivity()">บันทึก</button>
+    </div>
   </div>
 </div>
 
-<!-- Interview Modal -->
-<div class="modal-overlay" id="interviewModal">
-  <div class="modal-content">
-    <button class="close-modal" onclick="closeModal()">×</button>
-    <div class="modal-title">📜 ขั้นตอนการสัมภาษณ์</div>
-    <div class="ornate-divider"><span>✦</span></div>
-    <div id="steps-container"></div>
-    <div id="advice-container" class="advice-box"></div>
-  </div>
+<!-- SAVING OVERLAY -->
+<div id="saving-overlay">
+  <div class="spinner"></div>
+  <span>กำลังบันทึกรูป…</span>
 </div>
 
 <script>
-/* --- CONFIGURATION (ข้อมูลเดิม) --- */
-const CONFIG_ROUNDS = [
-  {
-    name: "รอบที่ 3 (ฟรี)",
-    title: "รอบที่ 3 : ฟรีค่าเข้า",
-    titleSub: "เข้มงวดเล็กน้อย",
-    date: "24 พฤษภาคม - 25 พฤษภาคม",
-    quota: "20 คน",
-    playDate: "26 พฤษภาคม | 20.00 น.",
-    skin: "ภายในวันที่ 26 (ถ้าไม่ทันรอรอบที่ 4)",
-    cost: "ฟรี",
-    note: "⚠️ กรุณาเข้าร่วมตามวันและเวลาที่กำหนดอย่างเคร่งครัด — <strong>การมาช้าหรือไม่มาอาจส่งผลต่อโรลตัวละครของท่านได้</strong>",
-    targetDate: "2026-05-24T20:00:00"
-  },
-  {
-    name: "รอบที่ สุดท้าย (ฟรี)",
-    title: "รอบที่ สุดท้าย : ฟรีค่าเข้า",
-    titleSub: "เข้มงวดเล็กน้อย",
-    date: "10 มิถุนายน - 11 มิถุนายน",
-    quota: "20 คน",
-    playDate: "12 มิถุนายน | 20.00 น.",
-    skin: "ภายในวันที่ 12 (ถ้าไม่ทันรอลงเป็นรอบๆ)",
-    cost: "ฟรี",
-    note: "⚠️ กรุณาเข้าร่วมตามวันและเวลาที่กำหนดอย่างเคร่งครัด — <strong>การมาช้าหรือไม่มาอาจส่งผลต่อโรลตัวละครของท่านได้</strong>",
-    targetDate: "2026-06-10T20:00:00"
-  }
+const DAYS = [
+  { key: 'mon', th: 'จันทร์',    en: 'Monday',    cssVar: '--mon', textDark: false },
+  { key: 'tue', th: 'อังคาร',   en: 'Tuesday',   cssVar: '--tue', textDark: false },
+  { key: 'wed', th: 'พุธ',       en: 'Wednesday', cssVar: '--wed', textDark: true  },
+  { key: 'thu', th: 'พฤหัสบดี', en: 'Thursday',  cssVar: '--thu', textDark: true  },
+  { key: 'fri', th: 'ศุกร์',    en: 'Friday',    cssVar: '--fri', textDark: false },
+  { key: 'sat', th: 'เสาร์',    en: 'Saturday',  cssVar: '--sat', textDark: false },
+  { key: 'sun', th: 'อาทิตย์',  en: 'Sunday',    cssVar: '--sun', textDark: false },
 ];
 
-const CONFIG_STEPS = [
-  "รอที่ห้องรอสัมภาษณ์ แอดมินจะมาสัมภาษณ์ตามคิวที่มีการรอ",
-  "เตรียมข้อมูล เกี่ยวกับตัวละครของคุณ และข้อมูลต่างๆที่เคยผ่านประสบการณ์",
-  "จะถามตอบเพื่อเช็คว่าคุณเข้าใจจริงๆมั้ย",
-  "จะมีการอธิบายสิทธิ์, ขออนุญาตสิทธิ์, บอกข้อตกลง",
-  "สมัครตัวละครในเซิฟเวอร์",
-  "ชำระค่าเซิฟเวอร์ กรณีฟรีค่าเข้าแอดมินจะแอดพอยท์ให้หลังจบสัมภาษณ์ *ให้เข้าเซิฟเวอร์ในวันที่กำหนดเท่านั้น"
+const DAY_COLORS = {
+  mon: '#FF6B6B', tue: '#FF9F43', wed: '#FFEAA7',
+  thu: '#55EFC4', fri: '#74B9FF', sat: '#A29BFE', sun: '#FD79A8'
+};
+
+const PALETTE = [
+  '#FF6B6B','#FF9F43','#FFEAA7','#55EFC4','#74B9FF','#A29BFE','#FD79A8',
+  '#00CEC9','#FDCB6E','#E17055','#81ECEC','#DFE6E9','#B8E994','#F8A5C2'
 ];
 
-const CONFIG_ADVICE = `
-  <strong style="color:var(--gold-light)">คำแนะนำสำหรับมือใหม่:</strong><br>
-  สำหรับผู้เล่นใหม่ที่ไม่เคยเล่นสามารถมาปรึกษาแอดมินได้ที่ห้องติดต่อแอดมิน<br><br>
-  <span style="color:var(--gold)">✦ ทางเซิฟจะมีการทำเซิฟเวอร์ขึ้นมาในรูปแบบที่อาจไม่ชินตา ทั้งระบบต่างๆ วิธีการเล่น การใช้งานที่แปลกใหม่ ควรศึกษาให้ดี</span>
-`;
+let currentDay = null;
+let selectedColor = PALETTE[0];
 
-/* --- CORE SYSTEM --- */
-function initApp() {
-  const wrapper = document.getElementById('app-content');
+/* ── Build palette dots ── */
+const cr = document.getElementById('color-row');
+PALETTE.forEach((c, i) => {
+  const d = document.createElement('div');
+  d.className = 'color-dot' + (i===0?' active':'');
+  d.style.background = c;
+  d.title = c;
+  d.onclick = () => {
+    selectedColor = c;
+    cr.querySelectorAll('.color-dot').forEach(x => x.classList.remove('active'));
+    d.classList.add('active');
+  };
+  cr.appendChild(d);
+});
 
-  let tabsHtml = `<div class="tabs-nav">`;
-  CONFIG_ROUNDS.forEach((r, i) => {
-    tabsHtml += `<button class="tab-btn ${i===0?'active':''}" onclick="switchTab(${i})">${r.name}</button>`;
-  });
-  tabsHtml += `<button class="tab-btn" onclick="switchTab(2)">📅 ตารางการเล่น</button>`;
-  tabsHtml += `</div>`;
+/* ── Build mobile day cards ── */
+function buildMobileDays() {
+  const container = document.getElementById('mobile-days');
+  container.innerHTML = '';
+  DAYS.forEach(day => {
+    const wrapper = document.createElement('div');
+    wrapper.className = 'mobile-day';
+    wrapper.id = 'mday-' + day.key;
 
-  let cardsHtml = "";
-  CONFIG_ROUNDS.forEach((r, i) => {
-    cardsHtml += `
-      <div id="tab-${i}" class="content-card ${i===0?'active':''}">
-        <span class="corner-br">✦</span>
-        <div class="card-title">${r.title}</div>
-        ${r.titleSub ? `<div style="font-family:'Cinzel',serif;font-size:0.75rem;color:var(--parchment-dark);letter-spacing:2px;margin-bottom:5px;">${r.titleSub}</div>` : ''}
-        <div class="ornate-divider"><span>✦ ✦ ✦</span></div>
-        <div class="info-grid">
-          <div class="info-item">
-            <div class="info-label">📅 วันสัมภาษณ์</div>
-            <div class="info-value">${r.date}</div>
-          </div>
-          <div class="info-item">
-            <div class="info-label">👥 จำนวนที่รับ</div>
-            <div class="info-value">${r.quota}</div>
-          </div>
-          <div class="info-item">
-            <div class="info-label">🎮 เริ่มเข้าเล่น</div>
-            <div class="info-value">${r.playDate}</div>
-          </div>
-          <div class="info-item">
-            <div class="info-label">🎨 กำหนดส่งสกิน</div>
-            <div class="info-value">${r.skin}</div>
-          </div>
-          <div class="info-item cost-item">
-            <div class="info-label">💰 ค่าเข้า</div>
-            <div class="info-value">${r.cost}</div>
+    const color = getComputedStyle(document.documentElement).getPropertyValue(day.cssVar).trim() || DAY_COLORS[day.key];
+    const textColor = day.textDark ? '#333' : '#fff';
+
+    wrapper.innerHTML = `
+      <div class="mobile-day-header" style="background:${color}; color:${textColor}" onclick="toggleDay('${day.key}')">
+        <div class="mobile-day-title">
+          <div class="mobile-day-dot" style="background:rgba(0,0,0,.2)"></div>
+          <div>
+            <div class="mobile-day-name">${day.th}</div>
+            <div class="mobile-day-en">${day.en}</div>
           </div>
         </div>
-        <div class="note-box">${r.note}</div>
-        <div class="action-area">
-          <button class="btn-interview" onclick="openModal()">📜 วิธีสัมภาษณ์</button>
+        <div style="display:flex;align-items:center;gap:8px">
+          <span class="mobile-day-count" id="mcount-${day.key}">0 กิจกรรม</span>
+          <span class="mobile-day-arrow">▼</span>
         </div>
+      </div>
+      <div class="mobile-day-body" id="mbody-${day.key}">
+        <button class="btn-add no-print" style="margin-top:4px" onclick="openModal('${day.key}')">＋ เพิ่มกิจกรรม</button>
+        <button class="btn-add-time no-print" onclick="openModalWithTime('${day.key}')">⏰ ระบุเวลา</button>
       </div>
     `;
+    container.appendChild(wrapper);
   });
+}
 
-  // Tab 3: ตารางการเล่น
-  cardsHtml += `
-    <div id="tab-2" class="content-card">
-      <span class="corner-br">✦</span>
-      <div class="card-title">ตารางการเล่น</div>
-      <div class="ornate-divider"><span>✦ ✦ ✦</span></div>
+function toggleDay(key) {
+  const el = document.getElementById('mday-' + key);
+  el.classList.toggle('open');
+}
 
-      <!-- Day Grid -->
-      <div class="schedule-grid">
+function updateMobileCount(day) {
+  const body = document.getElementById('mbody-' + day);
+  if (!body) return;
+  const count = body.querySelectorAll('.activity').length;
+  const counter = document.getElementById('mcount-' + day);
+  if (counter) counter.textContent = count + ' กิจกรรม';
+}
 
-        <div class="sched-day closed-day">
-          <div class="sched-day-name">จันทร์</div>
-          <div class="sched-status closed-badge">ปิดเซิร์ฟ</div>
-          <div class="sched-extra">🎬 เวลาว่างสำหรับตัดคลิป / เตรียม Content</div>
-        </div>
+/* ── Color helper ── */
+function setColor(varName, val) {
+  document.documentElement.style.setProperty(varName, val);
+  // Rebuild mobile headers to reflect new colors
+  buildMobileDays();
+  // Reattach activities from desktop cells to mobile
+  syncActivitiesToMobile();
+}
 
-        <div class="sched-day open-day">
-          <div class="sched-day-name">อังคาร</div>
-          <div class="sched-status open-badge">เปิดเซิร์ฟ</div>
-          <div class="sched-activity">🎮 เล่นปกติ / กิจกรรมในเซิร์ฟ</div>
-        </div>
+function syncActivitiesToMobile() {
+  DAYS.forEach(day => {
+    const desktopCell = document.getElementById('cell-' + day.key);
+    const mobileBody = document.getElementById('mbody-' + day.key);
+    if (!desktopCell || !mobileBody) return;
+    const acts = desktopCell.querySelectorAll('.activity');
+    // Remove existing from mobile, re-add
+    mobileBody.querySelectorAll('.activity').forEach(a => a.remove());
+    const addBtn = mobileBody.querySelector('.btn-add');
+    acts.forEach(act => {
+      const clone = act.cloneNode(true);
+      clone.querySelector('.act-delete').onclick = function() {
+        // delete from both
+        const id = act.dataset.actid;
+        document.querySelectorAll('[data-actid="'+id+'"]').forEach(el => el.remove());
+        updateMobileCount(day.key);
+      };
+      mobileBody.insertBefore(clone, addBtn);
+    });
+    updateMobileCount(day.key);
+  });
+}
 
-        <div class="sched-day open-day">
-          <div class="sched-day-name">พุธ</div>
-          <div class="sched-status open-badge">เปิดเซิร์ฟ</div>
-          <div class="sched-activity">🎮 เล่นปกติ / กิจกรรมในเซิร์ฟ</div>
-        </div>
+/* ── Modal ── */
+function openModal(day) {
+  currentDay = day;
+  const dayNames = {mon:'จันทร์',tue:'อังคาร',wed:'พุธ',thu:'พฤหัสบดี',fri:'ศุกร์',sat:'เสาร์',sun:'อาทิตย์'};
+  document.getElementById('modal-title').textContent = `เพิ่มกิจกรรม — วัน${dayNames[day]}`;
+  document.getElementById('act-name').value = '';
+  document.getElementById('act-start').value = '';
+  document.getElementById('act-end').value = '';
+  document.getElementById('act-note').value = '';
+  document.querySelectorAll('.chip').forEach(c => { c.style.background=''; c.style.borderColor=''; c.style.fontWeight=''; });
+  selectedColor = DAY_COLORS[day];
+  cr.querySelectorAll('.color-dot').forEach(d => {
+    d.classList.toggle('active', d.title === selectedColor);
+  });
+  // Open the mobile day accordion
+  const mday = document.getElementById('mday-' + day);
+  if (mday && !mday.classList.contains('open')) mday.classList.add('open');
+  document.getElementById('modal-overlay').classList.add('show');
+  setTimeout(() => document.getElementById('act-name').focus(), 150);
+}
 
-        <div class="sched-day closed-day">
-          <div class="sched-day-name">พฤหัสบดี</div>
-          <div class="sched-status closed-badge">ปิดเซิร์ฟ</div>
-          <div class="sched-extra">🎬 เวลาว่างสำหรับตัดคลิป / เตรียม Content</div>
-        </div>
+function openModalWithTime(day) {
+  openModal(day);
+  // Focus the start time field after modal opens
+  setTimeout(() => document.getElementById('act-start').focus(), 200);
+}
 
-        <div class="sched-day open-day">
-          <div class="sched-day-name">ศุกร์</div>
-          <div class="sched-status open-badge">เปิดเซิร์ฟ</div>
-          <div class="sched-activity">🎮 เล่นปกติ / กิจกรรมในเซิร์ฟ</div>
-        </div>
+function setQuickTime(start, end) {
+  document.getElementById('act-start').value = start;
+  document.getElementById('act-end').value = end;
+  // Highlight the active chip
+  document.querySelectorAll('.chip').forEach(c => {
+    c.style.background = '';
+    c.style.borderColor = '';
+    c.style.fontWeight = '';
+  });
+  event.target.style.background = '#d8d8ff';
+  event.target.style.borderColor = '#6c5ce7';
+  event.target.style.fontWeight = '700';
+}
 
-        <div class="sched-day open-day highlight-day">
-          <div class="sched-day-name">เสาร์</div>
-          <div class="sched-status open-badge">เปิดเซิร์ฟ</div>
-          <div class="sched-activity">🎮 เล่นปกติ / กิจกรรมในเซิร์ฟ</div>
-          <div class="sched-event">
-            <span class="event-time">🕘 21:00 น.</span>
-            <span class="event-name">⚔️ กิจกรรมซุ้มกองโจร</span>
-            <div class="event-desc">บุกซุ้มกองโจร NPC แย่งชิงของรางวัล!</div>
-          </div>
-        </div>
+function closeModal() {
+  document.getElementById('modal-overlay').classList.remove('show');
+  currentDay = null;
+}
 
-        <div class="sched-day open-day highlight-day">
-          <div class="sched-day-name">อาทิตย์</div>
-          <div class="sched-status open-badge">เปิดเซิร์ฟ</div>
-          <div class="sched-activity">🎮 เล่นปกติ / กิจกรรมในเซิร์ฟ</div>
-          <div class="sched-event">
-            <span class="event-time">🕘 21:00 น.</span>
-            <span class="event-name">⚔️ กิจกรรมซุ้มกองโจร</span>
-            <div class="event-desc">บุกซุ้มกองโจร NPC แย่งชิงของรางวัล!</div>
-          </div>
-        </div>
+function closeIfOutside(e) {
+  if (e.target === document.getElementById('modal-overlay')) closeModal();
+}
 
-      </div>
+function fmt12(t) {
+  if (!t) return '';
+  const [h, m] = t.split(':').map(Number);
+  const suffix = h >= 12 ? 'น.' : '';
+  const h12 = h % 12 || 12;
+  return `${h12}:${String(m).padStart(2,'0')}${suffix}`;
+}
 
-      <!-- Bonus project note -->
-      <div class="bonus-note">
-        <div style="font-family:'Rye',serif;font-size:0.9rem;color:var(--gold);margin-bottom:6px;">🌟 โปรเจคเสริม (วันปิดเซิร์ฟ)</div>
-        ในวันจันทร์และพฤหัสบดีที่เซิร์ฟปิด อาจมี <strong style="color:var(--gold-light)">โปรเจคเสริม</strong> ให้ทุกคนได้ร่วมสนุกเพื่อคลายเครียด
-        และยังเป็นช่วงเวลาที่เหมาะสำหรับการตัดคลิปหรือเตรียม content ของตัวเองด้วย
-      </div>
+let actIdCounter = 0;
 
-      <!-- Attendance warning -->
-      <div class="attend-warning">
-        <div class="attend-icon">⚠️</div>
-        <div>
-          <div style="font-family:'Rye',serif;font-size:0.85rem;color:#e87070;margin-bottom:5px;letter-spacing:1px;">คำเตือน : การเข้าร่วมเซิร์ฟ</div>
-          ผู้เล่นทุกท่าน <strong style="color:#ffb0b0;">จำเป็นต้องเข้าร่วมให้ครบทุกวันที่เซิร์ฟเปิด</strong> การขาดหรือหายไปโดยไม่แจ้งล่วงหน้าอาจส่งผลต่อสถานะและโรลตัวละครของท่านในเซิร์ฟได้
-        </div>
-      </div>
-    </div>
+function createActivityCard(name, start, end, note, color, day) {
+  const id = 'act-' + (++actIdCounter);
+  let timeStr = '';
+  if (start && end) timeStr = `${fmt12(start)} – ${fmt12(end)}`;
+  else if (start) timeStr = fmt12(start);
+
+  const card = document.createElement('div');
+  card.className = 'activity';
+  card.dataset.actid = id;
+  card.style.background = color + '33';
+  card.style.borderLeft = `3px solid ${color}`;
+  card.style.color = '#2d3436';
+
+  card.innerHTML = `
+    ${timeStr ? `<span class="time-badge" style="color:${color}">${timeStr}</span>` : ''}
+    <span class="act-name">${escHtml(name)}</span>
+    ${note ? `<span class="act-note">${escHtml(note)}</span>` : ''}
+    <button class="act-delete no-print" title="ลบ" onclick="deleteActivity('${id}','${day}')">✕</button>
+  `;
+  return { card, id };
+}
+
+function deleteActivity(id, day) {
+  document.querySelectorAll('[data-actid="'+id+'"]').forEach(el => el.remove());
+  updateMobileCount(day);
+}
+
+function addActivity() {
+  const name = document.getElementById('act-name').value.trim();
+  if (!name) { document.getElementById('act-name').focus(); return; }
+  const start = document.getElementById('act-start').value;
+  const end = document.getElementById('act-end').value;
+  const note = document.getElementById('act-note').value.trim();
+  const day = currentDay;
+
+  const { card, id } = createActivityCard(name, start, end, note, selectedColor, day);
+
+  // Add to desktop cell
+  const desktopCell = document.getElementById('cell-' + day);
+  const desktopAddBtn = desktopCell.querySelector('.btn-add');
+  const desktopCard = card.cloneNode(true);
+  desktopCard.dataset.actid = id;
+  desktopCard.querySelector('.act-delete').onclick = () => deleteActivity(id, day);
+  desktopCell.insertBefore(desktopCard, desktopAddBtn);
+
+  // Add to mobile body
+  const mobileBody = document.getElementById('mbody-' + day);
+  if (mobileBody) {
+    const mobileAddBtn = mobileBody.querySelector('.btn-add');
+    const mobileCard = card.cloneNode(true);
+    mobileCard.dataset.actid = id;
+    mobileCard.querySelector('.act-delete').onclick = () => deleteActivity(id, day);
+    mobileBody.insertBefore(mobileCard, mobileAddBtn);
+    updateMobileCount(day);
+  }
+
+  closeModal();
+}
+
+function escHtml(s) {
+  return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+
+/* ── Save Image ── */
+function saveImage() {
+  const savingEl = document.getElementById('saving-overlay');
+  savingEl.classList.add('show');
+
+  // Get title text from input
+  const titleInput = document.getElementById('page-title');
+  const titleText = titleInput.value || titleInput.placeholder || 'ตารางกิจกรรมประจำสัปดาห์';
+
+  // Build a standalone render element (desktop-style, fixed width)
+  const RENDER_WIDTH = 1200;
+  const renderEl = document.createElement('div');
+  renderEl.style.cssText = `
+    position: fixed;
+    left: -9999px;
+    top: 0;
+    width: ${RENDER_WIDTH}px;
+    background: ${getComputedStyle(document.documentElement).getPropertyValue('--bg').trim() || '#F8F9FF'};
+    padding: 32px 28px 36px;
+    font-family: 'Prompt', sans-serif;
+    box-sizing: border-box;
   `;
 
-  wrapper.innerHTML = tabsHtml + cardsHtml;
+  // Title as div (so Thai vowels render correctly)
+  const titleDiv = document.createElement('div');
+  titleDiv.style.cssText = `
+    text-align: center;
+    font-size: 2rem;
+    font-weight: 700;
+    color: #2d3436;
+    margin-bottom: 28px;
+    font-family: 'Prompt', sans-serif;
+    letter-spacing: .01em;
+    line-height: 1.6;
+  `;
+  titleDiv.textContent = titleText;
+  renderEl.appendChild(titleDiv);
 
-  document.getElementById('steps-container').innerHTML = CONFIG_STEPS.map((s, i) => `
-    <div class="step-box">
-      <div class="step-num">${i+1}</div>
-      <div class="step-text">${s}</div>
-    </div>
-  `).join('');
+  // Table
+  const tableWrap = document.createElement('div');
+  tableWrap.style.cssText = 'width:100%;overflow:hidden;';
 
-  document.getElementById('advice-container').innerHTML = CONFIG_ADVICE;
+  const tbl = document.createElement('table');
+  tbl.style.cssText = 'width:100%;border-collapse:separate;border-spacing:8px;table-layout:fixed;';
 
-  setInterval(updateCountdown, 1000);
-  updateCountdown();
+  // Header
+  const thead = document.createElement('thead');
+  const headerRow = document.createElement('tr');
+  const dayDefs = [
+    { th:'จันทร์', en:'Monday',    cssVar:'--mon', dark:false },
+    { th:'อังคาร', en:'Tuesday',   cssVar:'--tue', dark:false },
+    { th:'พุธ',     en:'Wednesday', cssVar:'--wed', dark:true  },
+    { th:'พฤหัสบดี',en:'Thursday', cssVar:'--thu', dark:true  },
+    { th:'ศุกร์',  en:'Friday',    cssVar:'--fri', dark:false },
+    { th:'เสาร์',  en:'Saturday',  cssVar:'--sat', dark:false },
+    { th:'อาทิตย์',en:'Sunday',    cssVar:'--sun', dark:false },
+  ];
+  const dayKeys = ['mon','tue','wed','thu','fri','sat','sun'];
+
+  dayDefs.forEach((d, i) => {
+    const th = document.createElement('th');
+    const color = getComputedStyle(document.documentElement).getPropertyValue(d.cssVar).trim() || DAY_COLORS[dayKeys[i]];
+    th.style.cssText = `
+      background:${color};
+      color:${d.dark ? '#333' : '#fff'};
+      padding:12px 8px 14px;
+      font-size:.9rem;
+      font-weight:700;
+      border-radius:10px;
+      text-align:center;
+      font-family:'Prompt',sans-serif;
+      line-height:1.5;
+    `;
+    th.innerHTML = `<span style="font-size:1.1rem;display:block;line-height:1.6;">${d.th}</span><span style="font-size:.68rem;opacity:.8;font-weight:400;">${d.en}</span>`;
+    headerRow.appendChild(th);
+  });
+  thead.appendChild(headerRow);
+  tbl.appendChild(thead);
+
+  // Body
+  const tbody = document.createElement('tbody');
+  const bodyRow = document.createElement('tr');
+  dayKeys.forEach(key => {
+    const td = document.createElement('td');
+    td.style.cssText = 'vertical-align:top;padding:6px;';
+
+    const inner = document.createElement('div');
+    inner.style.cssText = `
+      background:#fff;
+      border-radius:12px;
+      padding:8px;
+      min-height:160px;
+      box-shadow:0 2px 8px rgba(0,0,0,.06);
+      display:flex;
+      flex-direction:column;
+      gap:6px;
+    `;
+
+    // Copy activities from desktop cell
+    const srcCell = document.getElementById('cell-' + key);
+    const acts = srcCell.querySelectorAll('.activity');
+    acts.forEach(act => {
+      const clone = act.cloneNode(true);
+      // Remove delete button from clone
+      const del = clone.querySelector('.act-delete');
+      if (del) del.remove();
+      clone.style.cssText = act.style.cssText;
+      inner.appendChild(clone);
+    });
+
+    td.appendChild(inner);
+    bodyRow.appendChild(td);
+  });
+  tbody.appendChild(bodyRow);
+  tbl.appendChild(tbody);
+  tableWrap.appendChild(tbl);
+  renderEl.appendChild(tableWrap);
+  document.body.appendChild(renderEl);
+
+  setTimeout(() => {
+    html2canvas(renderEl, {
+      scale: 2,
+      useCORS: true,
+      width: RENDER_WIDTH,
+      windowWidth: RENDER_WIDTH,
+      scrollX: 0,
+      scrollY: 0,
+      backgroundColor: getComputedStyle(document.documentElement).getPropertyValue('--bg').trim() || '#F8F9FF',
+      logging: false,
+    }).then(canvas => {
+      document.body.removeChild(renderEl);
+      savingEl.classList.remove('show');
+      const now = new Date();
+      const pad = n => String(n).padStart(2,'0');
+      const name = `ตาราง_${now.getFullYear()}${pad(now.getMonth()+1)}${pad(now.getDate())}_${pad(now.getHours())}${pad(now.getMinutes())}.png`;
+      const a = document.createElement('a');
+      a.href = canvas.toDataURL('image/png');
+      a.download = name;
+      a.click();
+    }).catch(err => {
+      document.body.removeChild(renderEl);
+      savingEl.classList.remove('show');
+      console.error(err);
+      alert('เกิดข้อผิดพลาด กรุณาลองใหม่');
+    });
+  }, 300);
 }
 
-function updateCountdown() {
-  const now = new Date().getTime();
-  let currentRound = CONFIG_ROUNDS[0];
-  let target = new Date(currentRound.targetDate).getTime();
-  let label = "TIME TO R1";
+// Keyboard shortcuts
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') closeModal();
+  if (e.key === 'Enter' && document.getElementById('modal-overlay').classList.contains('show') && e.target.tagName !== 'TEXTAREA') addActivity();
+});
 
-  if (now > target && CONFIG_ROUNDS[1]) {
-    currentRound = CONFIG_ROUNDS[1];
-    target = new Date(currentRound.targetDate).getTime();
-    label = "TIME TO R2";
+// Init mobile UI
+buildMobileDays();
+
+
+/* ── Floating Action Button ── */
+function buildDayPicker() {
+  const grid = document.getElementById('day-picker-grid');
+  grid.innerHTML = '';
+  DAYS.forEach(day => {
+    const color = getComputedStyle(document.documentElement).getPropertyValue(day.cssVar).trim() || DAY_COLORS[day.key];
+    const btn = document.createElement('button');
+    btn.className = 'day-btn' + (day.textDark ? ' dark-text' : '');
+    btn.style.background = color;
+    btn.innerHTML = `<span>${day.th}</span>`;
+    btn.onclick = () => {
+      closeDayPicker();
+      openModal(day.key);
+    };
+    grid.appendChild(btn);
+  });
+}
+
+function toggleDayPicker() {
+  const picker = document.getElementById('day-picker');
+  const fab = document.getElementById('fab-btn');
+  const isOpen = picker.classList.contains('open');
+  if (isOpen) {
+    closeDayPicker();
+  } else {
+    buildDayPicker();
+    picker.classList.add('open');
+    fab.classList.add('open');
   }
+}
 
-  const diff = target - now;
-  if (diff < 0) {
-    document.getElementById('cdTitle').innerText = "SYSTEM LIVE";
-    document.getElementById('timer').innerText = "RIDE OUT";
-    return;
+function closeDayPicker() {
+  document.getElementById('day-picker').classList.remove('open');
+  document.getElementById('fab-btn').classList.remove('open');
+}
+
+// Close day picker when clicking outside
+document.addEventListener('click', e => {
+  const picker = document.getElementById('day-picker');
+  const fab = document.getElementById('fab-btn');
+  if (!picker.contains(e.target) && e.target !== fab && !fab.contains(e.target)) {
+    closeDayPicker();
   }
+});
 
-  const d = Math.floor(diff / (1000 * 60 * 60 * 24));
-  const h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-  const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-  const s = Math.floor((diff % (1000 * 60)) / 1000);
-
-  document.getElementById('cdTitle').innerText = label;
-  document.getElementById('timer').innerText =
-    `${d}d : ${h.toString().padStart(2,'0')}h : ${m.toString().padStart(2,'0')}m : ${s.toString().padStart(2,'0')}s`;
-}
-
-function switchTab(idx) {
-  document.querySelectorAll('.content-card').forEach(c => c.classList.remove('active'));
-  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-  document.getElementById(`tab-${idx}`).classList.add('active');
-  document.querySelectorAll('.tab-btn')[idx].classList.add('active');
-}
-
-function openModal() { document.getElementById('interviewModal').style.display = 'flex'; }
-function closeModal() { document.getElementById('interviewModal').style.display = 'none'; }
-
-/* --- LOADING --- */
-let prg = 0;
-function tick() {
-  prg += Math.random() * 14;
-  document.getElementById('ldBar').style.width = Math.min(100, prg) + '%';
-  document.getElementById('ldPct').innerText = Math.floor(Math.min(100, prg)) + '%';
-  if (prg < 100) setTimeout(tick, 80);
-  else setTimeout(() => {
-    const ls = document.getElementById('loadingScreen');
-    ls.classList.add('fade-out');
-    setTimeout(() => ls.style.display = 'none', 800);
-  }, 500);
-}
-
-window.onload = () => { initApp(); tick(); };
 </script>
+
+<!-- FLOATING ADD BUTTON -->
+<button class="fab no-print" id="fab-btn" onclick="toggleDayPicker()" title="เพิ่มกิจกรรม">
+  <span class="fab-icon" id="fab-icon">＋</span>
+</button>
+
+<!-- DAY PICKER POPUP -->
+<div class="day-picker no-print" id="day-picker">
+  <div class="day-picker-title">เลือกวันที่ต้องการเพิ่มกิจกรรม</div>
+  <div class="day-picker-grid" id="day-picker-grid"></div>
+</div>
 </body>
 </html>
