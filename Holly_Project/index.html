@@ -187,7 +187,7 @@ const CONFIG = {
   GITHUB_OWNER: "tr-studio",              // เช่น "taraRook"
   GITHUB_REPO: "Holly_Project",           // เช่น "holly-project"
   GITHUB_BRANCH: "main",                  // ชื่อ branch ที่ใช้งาน
-  DATA_PATH: "data/players.json"          // path ของไฟล์ข้อมูลใน repo
+  DATA_PATH: "players.json"               // path ของไฟล์ข้อมูลใน repo
 };
 /* ======================================================================== */
 
@@ -207,7 +207,7 @@ async function loadPlayers(){
     playersData = json.players || [];
   }catch(e){
     // Fallback for local testing before CONFIG is wired up to a real repo
-    const local = await fetch("data/players.json").catch(()=>null);
+    const local = await fetch("players.json").catch(()=>null);
     if(local && local.ok){
       const json = await local.json();
       playersData = json.players || [];
