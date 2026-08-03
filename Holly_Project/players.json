@@ -48,7 +48,7 @@
       "id": "p4",
       "house": "วังหลวง",
       "character": "เอนโซ่ (หัวหน้าคนใช้ในวังหลวง)",
-      "role": "หัวหน้าคนใช้",
+      "role": "ข้ารับใช้",
       "channels": [
         {
           "platform": "tiktok",
@@ -64,7 +64,7 @@
       "id": "p5",
       "house": "วาลดริค",
       "character": "เซเวีย วาลดริค (น้องสาวดยุก)",
-      "role": "ทายาทตระกูล",
+      "role": "สมาชิกตระกูล",
       "channels": [
         {
           "platform": "tiktok",
@@ -76,14 +76,23 @@
       "id": "p6",
       "house": "วาลดริค",
       "character": "อลัน เนครอส (หัวหน้าพ่อบ้าน)",
-      "role": "พ่อบ้าน/แม่บ้าน",
-      "channels": []
+      "role": "ข้ารับใช้",
+      "channels": [
+        {
+          "platform": "tiktok",
+          "url": "https://www.tiktok.com/@lnwza99763"
+        },
+        {
+          "platform": "youtube",
+          "url": "https://www.youtube.com/@saint-z4d"
+        }
+      ]
     },
     {
       "id": "p7",
       "house": "วาลดริค",
       "character": "โอฟีเรีย วาลดริค (น้องสาวดยุก)",
-      "role": "ทายาทตระกูล",
+      "role": "สมาชิกตระกูล",
       "channels": [
         {
           "platform": "tiktok",
@@ -95,7 +104,7 @@
       "id": "p8",
       "house": "วาลดริค",
       "character": "กัส (พ่อค้า/ช่างตีเหล็ก)",
-      "role": "ช่างตีเหล็ก",
+      "role": "บทบาทเสริม",
       "channels": [
         {
           "platform": "youtube",
@@ -123,7 +132,7 @@
       "id": "p10",
       "house": "วาลดริค",
       "character": "ไฮเมอร์ เดมาค็อฟ (พ่อบ้านตระกูลวาลดริค)",
-      "role": "พ่อบ้าน/แม่บ้าน",
+      "role": "ข้ารับใช้",
       "channels": [
         {
           "platform": "youtube",
@@ -135,7 +144,7 @@
       "id": "p11",
       "house": "เอลเดอรอส",
       "character": "เอเวาท์ ลิคต์ (เลขา Elderos)",
-      "role": "เลขา",
+      "role": "บทบาทเสริม",
       "channels": [
         {
           "platform": "youtube",
@@ -153,7 +162,7 @@
       "id": "p12",
       "house": "เอลเดอรอส",
       "character": "look (พ่อบ้าน ตระกูลเอลเดอรอส)",
-      "role": "พ่อบ้าน/แม่บ้าน",
+      "role": "ข้ารับใช้",
       "channels": [
         {
           "platform": "youtube",
@@ -165,7 +174,7 @@
       "id": "p13",
       "house": "เอลเดอรอส",
       "character": "รีด ลา เอลเดอรอส",
-      "role": "ทายาทตระกูล",
+      "role": "สมาชิกตระกูล",
       "channels": [
         {
           "platform": "tiktok",
@@ -177,7 +186,7 @@
       "id": "p14",
       "house": "เอลเดอรอส",
       "character": "เรโน่ ลา เอลเดอรอส (บุตรชายคนเล็ก)",
-      "role": "ทายาทตระกูล",
+      "role": "สมาชิกตระกูล",
       "channels": [
         {
           "platform": "tiktok",
@@ -189,7 +198,7 @@
       "id": "p15",
       "house": "เอลเดอรอส",
       "character": "Rosaria La Elderos (ลูกสาวคนโต)",
-      "role": "ทายาทตระกูล",
+      "role": "สมาชิกตระกูล",
       "channels": [
         {
           "platform": "tiktok",
@@ -205,7 +214,7 @@
       "id": "p16",
       "house": "แบล็กธอร์น",
       "character": "ซาลิซ",
-      "role": "มาร์ควิส",
+      "role": "บทบาทเสริม",
       "channels": [
         {
           "platform": "youtube",
@@ -229,7 +238,7 @@
       "id": "p18",
       "house": "แบล็กธอร์น",
       "character": "ซินเทียร์ แบล็กธอร์น (น้องชายเจ้าตระกูล)",
-      "role": "ทายาทตระกูล",
+      "role": "สมาชิกตระกูล",
       "channels": [
         {
           "platform": "youtube",
@@ -245,7 +254,7 @@
       "id": "p19",
       "house": "ซิลเวอร์เรน",
       "character": "ธารา รูค ซิลเวอร์เรน",
-      "role": "เจ้าตระกูล",
+      "role": "สมาชิกตระกูล",
       "channels": [
         {
           "platform": "youtube",
@@ -261,14 +270,19 @@
       "id": "p20",
       "house": "ซิลเวอร์เรน",
       "character": "ชาร์ล็อต ซิลเวอร์เรน (ลูกสาวคนเล็ก)",
-      "role": "ทายาทตระกูล",
-      "channels": []
+      "role": "สมาชิกตระกูล",
+      "channels": [
+        {
+          "platform": "tiktok",
+          "url": "https://www.tiktok.com/@eva.nyxth"
+        }
+      ]
     },
     {
       "id": "p21",
       "house": "ซิลเวอร์เรน",
       "character": "ฟอเรสต์ (พ่อบ้านตระกูลซิลเวอร์เรน)",
-      "role": "พ่อบ้าน/แม่บ้าน",
+      "role": "ข้ารับใช้",
       "channels": [
         {
           "platform": "tiktok",
@@ -284,7 +298,7 @@
       "id": "p22",
       "house": "ซิลเวอร์เรน",
       "character": "เอซ ซิลเวอร์เรน",
-      "role": "อัศวินฝึกหัด",
+      "role": "อัศวิน",
       "channels": [
         {
           "platform": "tiktok",
@@ -296,7 +310,7 @@
       "id": "p23",
       "house": "ซิลเวอร์เรน",
       "character": "Rosalind Silverrain (ลูกสาวคนโต)",
-      "role": "ทายาทตระกูล",
+      "role": "สมาชิกตระกูล",
       "channels": [
         {
           "platform": "tiktok",
@@ -308,7 +322,7 @@
       "id": "p24",
       "house": "ซิลเวอร์เรน",
       "character": "เคโลน่า ฟอสทีน่า (แม่บ้านตระกูลซิลเวอร์เรน)",
-      "role": "พ่อบ้าน/แม่บ้าน",
+      "role": "ข้ารับใช้",
       "channels": [
         {
           "platform": "youtube",
@@ -324,7 +338,7 @@
       "id": "p25",
       "house": "เดรคมาร์",
       "character": "เวเรน เดรคมาร์",
-      "role": "เจ้าตระกูล",
+      "role": "สมาชิกตระกูล",
       "channels": [
         {
           "platform": "youtube",
@@ -340,7 +354,7 @@
       "id": "p26",
       "house": "เดรคมาร์",
       "character": "ทัสสิเมะ โทระ",
-      "role": "องครักษ์",
+      "role": "อัศวิน",
       "channels": [
         {
           "platform": "tiktok",
@@ -352,7 +366,7 @@
       "id": "p27",
       "house": "เดรคมาร์",
       "character": "โอเชี่ยน (พ่อบ้านตระกูลเดรคมาร์)",
-      "role": "พ่อบ้าน/แม่บ้าน",
+      "role": "ข้ารับใช้",
       "channels": [
         {
           "platform": "tiktok",
@@ -364,7 +378,7 @@
       "id": "p28",
       "house": "เดรคมาร์",
       "character": "Yurisia Eliana Drakmar (ลูกสาวคนเล็ก)",
-      "role": "ทายาทตระกูล",
+      "role": "สมาชิกตระกูล",
       "channels": [
         {
           "platform": "tiktok",
@@ -376,28 +390,47 @@
       "id": "p29",
       "house": "เรดมอนต์",
       "character": "โนเอล เรดมอนต์",
-      "role": "เจ้าตระกูล",
-      "channels": []
+      "role": "สมาชิกตระกูล",
+      "channels": [
+        {
+          "platform": "youtube",
+          "url": "https://www.youtube.com/@dkgzfh2251"
+        },
+        {
+          "platform": "tiktok",
+          "url": "https://www.tiktok.com/@lol555175"
+        }
+      ]
     },
     {
       "id": "p30",
       "house": "เรดมอนต์",
       "character": "เจสลิน เรดมอนต์ (อัศวินตระกูลเรดมอนต์)",
       "role": "อัศวิน",
-      "channels": []
+      "channels": [
+        {
+          "platform": "tiktok",
+          "url": "https://www.tiktok.com/@jzb881"
+        }
+      ]
     },
     {
       "id": "p31",
       "house": "เรดมอนต์",
       "character": "ราลาส เรอา (เลขาตระกูลเรดมอนต์)",
-      "role": "เลขา",
-      "channels": []
+      "role": "บทบาทเสริม",
+      "channels": [
+        {
+          "platform": "tiktok",
+          "url": "https://www.tiktok.com/@alarure"
+        }
+      ]
     },
     {
       "id": "p32",
       "house": "เรดมอนต์",
       "character": "โลแกน (ช่างตีเหล็กตระกูลเรดมอนต์)",
-      "role": "ช่างตีเหล็ก",
+      "role": "บทบาทเสริม",
       "channels": [
         {
           "platform": "tiktok",
@@ -413,7 +446,7 @@
       "id": "p33",
       "house": "โนเวลเลียส",
       "character": "Kael Novelias",
-      "role": "เจ้าตระกูล",
+      "role": "สมาชิกตระกูล",
       "channels": [
         {
           "platform": "youtube",
@@ -425,7 +458,7 @@
       "id": "p34",
       "house": "โนเวลเลียส",
       "character": "ลอเรนซ์ โนเวลเลียส (น้องชายเจ้าตระกูล)",
-      "role": "ทายาทตระกูล",
+      "role": "สมาชิกตระกูล",
       "channels": [
         {
           "platform": "tiktok",
@@ -437,7 +470,7 @@
       "id": "p35",
       "house": "โนเวลเลียส",
       "character": "เนริส (อัศวินฝึกหัดตระกูลโนเวลเลียส)",
-      "role": "อัศวินฝึกหัด",
+      "role": "อัศวิน",
       "channels": [
         {
           "platform": "youtube",
@@ -453,7 +486,7 @@
       "id": "p36",
       "house": "บทบาทเสริม",
       "character": "ริวโนะ สุเกะ",
-      "role": "องครักษ์",
+      "role": "อัศวิน",
       "channels": [
         {
           "platform": "youtube",
@@ -469,7 +502,7 @@
       "id": "p37",
       "house": "บทบาทเสริม",
       "character": "ราฟาเอล ลอร์ด",
-      "role": "อัศวินฝึกหัด",
+      "role": "อัศวิน",
       "channels": [
         {
           "platform": "tiktok",
@@ -481,7 +514,7 @@
       "id": "p38",
       "house": "บทบาทเสริม",
       "character": "คัส",
-      "role": "พ่อค้า/แม่ค้า",
+      "role": "บทบาทเสริม",
       "channels": [
         {
           "platform": "tiktok",
@@ -506,7 +539,7 @@
       "id": "p40",
       "house": "บทบาทเสริม",
       "character": "ชินเซีย",
-      "role": "เจ้าหน้าที่ในวัง",
+      "role": "บทบาทเสริม",
       "channels": [
         {
           "platform": "tiktok",
@@ -518,7 +551,7 @@
       "id": "p41",
       "house": "บทบาทเสริม",
       "character": "วอร์เรน เคเล็บ",
-      "role": "อัศวินฝึกหัด",
+      "role": "อัศวิน",
       "channels": [
         {
           "platform": "youtube",
@@ -530,7 +563,7 @@
       "id": "p42",
       "house": "บทบาทเสริม",
       "character": "เบลิออส เรเวนครอส (องครักษ์ประจำตัวรัชทายาท)",
-      "role": "องครักษ์",
+      "role": "อัศวิน",
       "channels": [
         {
           "platform": "youtube",
@@ -542,7 +575,7 @@
       "id": "p43",
       "house": "บทบาทเสริม",
       "character": "ฟางซิน เทียนรุ่ย (องครักษ์ประจำตัวรัชทายาท)",
-      "role": "องครักษ์",
+      "role": "อัศวิน",
       "channels": [
         {
           "platform": "youtube",
@@ -558,7 +591,7 @@
       "id": "p44",
       "house": "บทบาทเสริม",
       "character": "โนแวล วานเรนติโน (พ่อค้า/ช่างตีเหล็ก)",
-      "role": "ช่างตีเหล็ก",
+      "role": "บทบาทเสริม",
       "channels": [
         {
           "platform": "tiktok",
@@ -574,14 +607,19 @@
       "id": "p45",
       "house": "บทบาทเสริม",
       "character": "ไรน์ฮาร์ท เดอ ฟรานเชสต์ ฟาน อารันเธีย เด โรมาร์",
-      "role": "ผู้ไต่สวน",
-      "channels": []
+      "role": "บทบาทเสริม",
+      "channels": [
+        {
+          "platform": "youtube",
+          "url": "https://www.youtube.com/@renztheinsanity"
+        }
+      ]
     },
     {
       "id": "p46",
       "house": "บทบาทเสริม",
       "character": "โอตะ",
-      "role": "อัศวินฝึกหัด",
+      "role": "อัศวิน",
       "channels": [
         {
           "platform": "youtube",
@@ -598,13 +636,22 @@
       "house": "บทบาทเสริม",
       "character": "คิว โทจิยามะ (อัศวินสังกัดวังหลวง)",
       "role": "อัศวิน",
-      "channels": []
+      "channels": [
+        {
+          "platform": "tiktok",
+          "url": "https://www.tiktok.com/@lo30z_channel"
+        },
+        {
+          "platform": "youtube",
+          "url": "https://www.youtube.com/@QTojiyama"
+        }
+      ]
     },
     {
       "id": "p48",
       "house": "บทบาทเสริม",
       "character": "เทเรซ่า บาดัลล่า (แม่ค้าเมืองธาลัสซ่าร์พอร์ต)",
-      "role": "พ่อค้า/แม่ค้า",
+      "role": "บทบาทเสริม",
       "channels": [
         {
           "platform": "tiktok",
@@ -633,13 +680,18 @@
       "house": "บทบาทเสริม",
       "character": "เมริน่า เมอร์แลนด์ (อัศวินสำนักวังหลวง)",
       "role": "อัศวิน",
-      "channels": []
+      "channels": [
+        {
+          "platform": "tiktok",
+          "url": "https://www.tiktok.com/@worty_0p0"
+        }
+      ]
     },
     {
       "id": "p51",
       "house": "บทบาทเสริม",
       "character": "เซียลีน โรเซนการ์ด เอลเดอรอส (ผู้บัญชาการกองอัศวินวังหลวง)",
-      "role": "ผู้บัญชาการ",
+      "role": "อัศวิน",
       "channels": [
         {
           "platform": "tiktok",
