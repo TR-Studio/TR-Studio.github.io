@@ -8,8 +8,11 @@
       "channels": [
         {
           "platform": "youtube",
-          "url": "https://www.youtube.com/@ItsSakata_"
-        }
+          "url": "https://www.youtube.com/@ItsSakata"
+        },
+        {
+          "platform": "tiktok",
+          "url": "https://www.tiktok.com/@itssakata_"
       ]
     },
     {
