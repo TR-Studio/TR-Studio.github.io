@@ -8,11 +8,7 @@
       "channels": [
         {
           "platform": "youtube",
-          "url": "https://www.youtube.com/@ItsSakata"
-        },
-        {
-          "platform": "tiktok",
-          "url": "https://www.tiktok.com/@itssakata_"
+          "url": "https://www.youtube.com/@ItsSakata_"
         }
       ]
     },
@@ -285,7 +281,7 @@
     {
       "id": "p21",
       "house": "ซิลเวอร์เรน",
-      "character": "ฟอเรสต์ (พ่อบ้านตระกูลซิลเวอร์เรน)",
+      "character": "ฟอเรสท์ (พ่อบ้านตระกูลซิลเวอร์เรน)",
       "role": "ข้ารับใช้",
       "channels": [
         {
@@ -718,6 +714,34 @@
           "url": "https://www.tiktok.com/@evejunshichqm"
         }
       ]
+    },
+    {
+      "house": "วาลดริค",
+      "character": "เซริออน วาลดริก (หัวหน้าตระกูล)",
+      "role": "สมาชิกตระกูล",
+      "channels": [
+        {
+          "platform": "tiktok",
+          "url": "https://www.tiktok.com/@charintornct"
+        }
+      ],
+      "id": "p53"
+    },
+    {
+      "house": "บทบาทเสริม",
+      "character": "โทมิโอกะ เมกิ",
+      "role": "อัศวิน",
+      "channels": [
+        {
+          "platform": "tiktok",
+          "url": "https://www.tiktok.com/@toyachisaki"
+        },
+        {
+          "platform": "youtube",
+          "url": "https://www.youtube.com/@toyachisaki"
+        }
+      ],
+      "id": "p54"
     }
   ]
 }
