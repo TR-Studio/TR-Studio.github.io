@@ -754,13 +754,8 @@
       "role": "บทบาทเสริม",
       "channels": [
         {
-          "platform": "twitter",
-          "url": "https://twitter.com/KIM16294"
-        },
-        {
           "platform": "youtube",
-          "url": "https://youtube.com/@wxa72-k1x?si=YXP1OqicoVFz02tN",
-          "label": "บ้านแดง Wx A72"
+          "url": "https://youtube.com/@wxa72-k1x?si=YXP1OqicoVFz02tN"
         }
       ]
     },
@@ -771,18 +766,12 @@
       "role": "อัศวิน",
       "channels": [
         {
-          "platform": "twitter",
-          "url": "https://twitter.com/VillagerFoxy272"
-        },
-        {
           "platform": "youtube",
-          "url": "https://youtube.com/@blackpink_76543?si=nppkhg2zykcDOLLe",
-          "label": "Foxman โมจิ"
+          "url": "https://youtube.com/@blackpink_76543?si=nppkhg2zykcDOLLe"
         },
         {
           "platform": "tiktok",
-          "url": "https://www.tiktok.com/@robot0976?_r=1&_t=ZS-98cugN6cb6u",
-          "label": "ลุงเอนจิRobot"
+          "url": "https://www.tiktok.com/@robot0976?_r=1&_t=ZS-98cugN6cb6u"
         }
       ]
     },
@@ -793,13 +782,8 @@
       "role": "องค์หญิง",
       "channels": [
         {
-          "platform": "twitter",
-          "url": "https://twitter.com/Ariding3096"
-        },
-        {
           "platform": "tiktok",
-          "url": "https://www.tiktok.com/@kaorumizun?_r=1&_t=ZS-98arKvaATsz",
-          "label": "kaorumizun"
+          "url": "https://www.tiktok.com/@kaorumizun?_r=1&_t=ZS-98arKvaATsz"
         }
       ]
     }
