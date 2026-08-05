@@ -746,6 +746,62 @@
         }
       ],
       "id": "p54"
+    },
+    {
+      "id": "p55",
+      "house": "บทบาทเสริม",
+      "character": "นกอ้วน (พ่อค้าจากรูนเฮเวน)",
+      "role": "บทบาทเสริม",
+      "channels": [
+        {
+          "platform": "twitter",
+          "url": "https://twitter.com/KIM16294"
+        },
+        {
+          "platform": "youtube",
+          "url": "https://youtube.com/@wxa72-k1x?si=YXP1OqicoVFz02tN",
+          "label": "บ้านแดง Wx A72"
+        }
+      ]
+    },
+    {
+      "id": "p56",
+      "house": "แบล็กธอร์น",
+      "character": "โรเรนโซ ซานเชต (อัศวินฝึกหัด)",
+      "role": "อัศวิน",
+      "channels": [
+        {
+          "platform": "twitter",
+          "url": "https://twitter.com/VillagerFoxy272"
+        },
+        {
+          "platform": "youtube",
+          "url": "https://youtube.com/@blackpink_76543?si=nppkhg2zykcDOLLe",
+          "label": "Foxman โมจิ"
+        },
+        {
+          "platform": "tiktok",
+          "url": "https://www.tiktok.com/@robot0976?_r=1&_t=ZS-98cugN6cb6u",
+          "label": "ลุงเอนจิRobot"
+        }
+      ]
+    },
+    {
+      "id": "p57",
+      "house": "วังหลวง",
+      "character": "อลิเซีย นิลส์สัน โครนอส (องค์หญิงลำดับที่2)",
+      "role": "องค์หญิง",
+      "channels": [
+        {
+          "platform": "twitter",
+          "url": "https://twitter.com/Ariding3096"
+        },
+        {
+          "platform": "tiktok",
+          "url": "https://www.tiktok.com/@kaorumizun?_r=1&_t=ZS-98arKvaATsz",
+          "label": "kaorumizun"
+        }
+      ]
     }
   ]
 }
